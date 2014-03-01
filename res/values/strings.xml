@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Openingsuren BE</string>
+    <string name="app_name">Opening Hours BE</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="what">Store</string>
+    <string name="where">Place / Postal code</string>
+    <string name="search">Find!</string>
 
 </resources>
