@@ -6,5 +6,9 @@
     <string name="what">Store</string>
     <string name="where">Place / Postal code</string>
     <string name="search">Find!</string>
+    <string name="open">Open</string>
+    <string name="closed">Closed</string>
+    <string name="loading">Loading…</string>
+    <string name="retrieving_results">Retrieving results</string>
 
 </resources>

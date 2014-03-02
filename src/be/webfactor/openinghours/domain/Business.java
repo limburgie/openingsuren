@@ -13,6 +13,8 @@ public class Business {
 	private String fax;
 	private String extraInfo;
 	private Date lastModified;
+	private boolean open;
+	private String url;
 
 	private DailyOpeningTime monday;
 	private DailyOpeningTime tuesday;
@@ -157,6 +159,22 @@ public class Business {
 
 	public void setHoliday(DailyOpeningTime holiday) {
 		this.holiday = holiday;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }
