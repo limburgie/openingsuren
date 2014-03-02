@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.adapter.BusinessAdapter;
 import be.webfactor.openinghours.domain.BusinessSearchQuery;
@@ -18,6 +19,7 @@ public class ResultsActivity extends Activity {
 
 	private ProgressDialog pd;
 	private ListView resultList;
+	private TextView message;
 	private BusinessSearchService service;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class ResultsActivity extends Activity {
 	private void buildLayout() {
 		setContentView(R.layout.activity_results);
 		resultList = (ListView) findViewById(R.id.resultList);
+		message = (TextView) findViewById(R.id.message);
 	}
 
 	private void populateResultList() {
@@ -55,10 +58,21 @@ public class ResultsActivity extends Activity {
 	
 	private class FetchResultsTask extends AsyncTask<BusinessSearchQuery, Void, BusinessSearchResult> {
 		protected BusinessSearchResult doInBackground(BusinessSearchQuery... params) {
-			return service.findBusinesses(params[0]);
+			try {
+				return service.findBusinesses(params[0]);
+			} catch(Throwable t) {
+				message.setText(getResources().getString(R.string.unexpected_error));
+				return new BusinessSearchResult();
+			}
 		}
 		
 		protected void onPostExecute(BusinessSearchResult result) {
+			int resultCount = result.getResultCount();
+			if(resultCount == 0) {
+				message.setText(getResources().getString(R.string.no_results_found));
+			} else {
+				message.setText(getResources().getString(R.string.x_results_found, resultCount));
+			}
 			resultList.setAdapter(new BusinessAdapter(getApplicationContext(), result.getFirstResults()));
 			pd.dismiss();
 		}
