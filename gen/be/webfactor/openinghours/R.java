@@ -42,21 +42,22 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f09000a;
-        public static final int button_search=0x7f090004;
+        public static final int button_search=0x7f090005;
         public static final int category=0x7f090008;
         public static final int city=0x7f090009;
-        public static final int closedIcon=0x7f090006;
-        public static final int message=0x7f090000;
-        public static final int name=0x7f090007;
-        public static final int openIcon=0x7f090005;
-        public static final int resultList=0x7f090001;
-        public static final int what=0x7f090002;
-        public static final int where=0x7f090003;
+        public static final int closedIcon=0x7f090007;
+        public static final int message=0x7f090001;
+        public static final int name=0x7f090000;
+        public static final int openIcon=0x7f090006;
+        public static final int resultList=0x7f090002;
+        public static final int what=0x7f090003;
+        public static final int where=0x7f090004;
     }
     public static final class layout {
-        public static final int activity_results=0x7f030000;
-        public static final int activity_search=0x7f030001;
-        public static final int result_row=0x7f030002;
+        public static final int activity_detail=0x7f030000;
+        public static final int activity_results=0x7f030001;
+        public static final int activity_search=0x7f030002;
+        public static final int result_row=0x7f030003;
     }
     public static final class menu {
         public static final int search=0x7f080000;
@@ -66,14 +67,15 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int closed=0x7f060006;
         public static final int loading=0x7f060007;
-        public static final int no_results_found=0x7f06000a;
+        public static final int no_results_found=0x7f06000b;
         public static final int open=0x7f060005;
+        public static final int retrieving_details=0x7f060009;
         public static final int retrieving_results=0x7f060008;
         public static final int search=0x7f060004;
-        public static final int unexpected_error=0x7f06000b;
+        public static final int unexpected_error=0x7f06000c;
         public static final int what=0x7f060002;
         public static final int where=0x7f060003;
-        public static final int x_results_found=0x7f060009;
+        public static final int x_results_found=0x7f06000a;
     }
     public static final class style {
         /** 

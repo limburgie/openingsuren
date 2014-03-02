@@ -1,7 +1,6 @@
 package be.webfactor.openinghours.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,16 +31,7 @@ public class SearchActivity extends Activity {
 		
 		Intent i = new Intent(getApplicationContext(), ResultsActivity.class);
 		i.putExtra(BusinessSearchQuery.class.getName(), new BusinessSearchQuery(what, where));
-		
-		final ProgressDialog progress = new ProgressDialog(this);
-		progress.setTitle("Loading");
-		progress.setMessage("Wait while loading...");
-		progress.setIndeterminate(true);
-		progress.show();
-		
 		startActivity(i);
-		
-		progress.hide();
 	}
 
 }
