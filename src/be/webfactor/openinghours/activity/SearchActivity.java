@@ -1,26 +1,22 @@
 package be.webfactor.openinghours.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 import be.webfactor.openinghours.R;
-import be.webfactor.openinghours.service.BusinessSearchService;
-import be.webfactor.openinghours.service.impl.BusinessSearchServiceOpeningsurenComImpl;
+import be.webfactor.openinghours.domain.BusinessSearchQuery;
 
 public class SearchActivity extends Activity {
 
 	private EditText whatInput;
 	private EditText whereInput;
 	
-	private BusinessSearchService searchService;
-	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		buildLayout();
-		
-		searchService = new BusinessSearchServiceOpeningsurenComImpl();
 	}
 
 	private void buildLayout() {
@@ -34,7 +30,18 @@ public class SearchActivity extends Activity {
 		String what = whatInput.getText().toString();
 		String where = whereInput.getText().toString();
 		
-		Toast.makeText(getApplicationContext(), what + " - " + where, Toast.LENGTH_LONG).show();
+		Intent i = new Intent(getApplicationContext(), ResultsActivity.class);
+		i.putExtra(BusinessSearchQuery.class.getName(), new BusinessSearchQuery(what, where));
+		
+		final ProgressDialog progress = new ProgressDialog(this);
+		progress.setTitle("Loading");
+		progress.setMessage("Wait while loading...");
+		progress.setIndeterminate(true);
+		progress.show();
+		
+		startActivity(i);
+		
+		progress.hide();
 	}
 
 }

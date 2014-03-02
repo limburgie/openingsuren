@@ -6,7 +6,7 @@ import java.util.List;
 public class BusinessSearchResult {
 
 	private int resultCount;
-	private List<Business> firstTenResults = new ArrayList<Business>();
+	private List<Business> firstResults = new ArrayList<Business>();
 
 	public int getResultCount() {
 		return resultCount;
@@ -16,12 +16,12 @@ public class BusinessSearchResult {
 		this.resultCount = resultCount;
 	}
 
-	public List<Business> getFirstTenResults() {
-		return firstTenResults;
+	public List<Business> getFirstResults() {
+		return firstResults;
 	}
 
-	public void setFirstTenResults(List<Business> firstTenResults) {
-		this.firstTenResults = firstTenResults;
+	public void setFirstTenResults(List<Business> firstResults) {
+		this.firstResults = firstResults;
 	}
 
 }

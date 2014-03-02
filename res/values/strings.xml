@@ -6,5 +6,12 @@
     <string name="what">Store</string>
     <string name="where">Place / Postal code</string>
     <string name="search">Find!</string>
+    <string name="open">Open</string>
+    <string name="closed">Closed</string>
+    <string name="loading">Loading…</string>
+    <string name="retrieving_results">Retrieving results</string>
+    <string name="x_results_found">%1$d stores were found.</string>
+    <string name="no_results_found">No stores found. Refine your search criteria.</string>
+    <string name="unexpected_error">An unexpected error occurred.</string>
 
 </resources>

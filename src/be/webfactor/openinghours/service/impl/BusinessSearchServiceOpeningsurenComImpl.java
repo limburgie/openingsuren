@@ -14,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import be.webfactor.openinghours.domain.Business;
+import be.webfactor.openinghours.domain.BusinessSearchQuery;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
 import be.webfactor.openinghours.domain.DailyOpeningTime;
 import be.webfactor.openinghours.service.BusinessSearchService;
@@ -21,32 +22,51 @@ import be.webfactor.openinghours.service.ConnectionException;
 
 public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchService {
 
+	private static final String TOO_MANY_RESULTS = "Enkel de eerste 300 handelszaken worden getoond. Gelieve uw selectiecriteria eventueel te verfijnen.";
+	private static final String IP_BLOCKED = "Deze pagina is niet meer beschikbaar voor uw IP-adres";
 	private static final String BASE_URL = "http://www.openingsuren.com/";
 	private static final String NO_RESULTS_FOUND = "Gevraagde openingsuren niet gevonden.";
 	private static final String SEARCH_FORMAT = BASE_URL + "lijst.php?zoekveld=%s&veldgem=%s";
-	
-	public BusinessSearchResult findBusinesses(String name, String city) {
-		String safeName = name == null ? "" : name;
-		String safeCity = city == null ? "" : city;
-		
+
+	public BusinessSearchResult findBusinesses(BusinessSearchQuery query) {
+		String safeName = query.getWhat();
+		String safeCity = query.getWhere();
+
 		Document resultsPage = connect(String.format(SEARCH_FORMAT, safeName, safeCity));
 		BusinessSearchResult result = new BusinessSearchResult();
-		if(resultsPage.text().contains(NO_RESULTS_FOUND)) {
+		if (resultsPage.text().contains(NO_RESULTS_FOUND)) {
 			return result;
 		}
-		result.setResultCount(getResultCount(resultsPage));
-		
-		List<Business> firstTenResults = result.getFirstTenResults();
-		Elements elements = resultsPage.select("table table font[size=2] a");
-		for (Element businessLink : elements) {
-			Document detailPage = connect(BASE_URL + businessLink.attr("href"));
-			Element resultTable = detailPage.select("table[bgcolor=#ffffcc]").first();
-			firstTenResults.add(createBusiness(resultTable));
+		int startIndex = 2;
+		if (resultsPage.text().contains(TOO_MANY_RESULTS)) {
+			startIndex++;
 		}
-		
+		result.setResultCount(getResultCount(resultsPage));
+
+		List<Business> firstTenResults = result.getFirstResults();
+		Elements rows = resultsPage.select("table[bordercolordark=#000266] tr");
+		for (int i = startIndex; i < rows.size() - 5; i++) {
+			Business business = new Business();
+			Elements columns = rows.get(i).select("td");
+			business.setOpen(columns.get(0).attr("bgcolor").equals("#33FF33"));
+			business.setName(columns.get(1).text());
+			business.setCategory(columns.get(2).text());
+			business.setCity(columns.get(3).text().concat(" ").concat(columns.get(4).text()));
+			firstTenResults.add(business);
+		}
+
 		return result;
 	}
-	
+
+	public Business getDetail(Business business) {
+		Document detailPage = connect(BASE_URL + business.getUrl());
+		if (detailPage.text().contains(IP_BLOCKED)) {
+			throw new IPBlockedException();
+		}
+		Element resultTable = detailPage.select("table[bgcolor=#ffffcc]").first();
+		return createBusiness(resultTable);
+	}
+
 	private Document connect(String url) {
 		try {
 			return Jsoup.connect(url).get();
@@ -57,7 +77,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 
 	private Business createBusiness(Element context) {
 		Business business = new Business();
-		
+
 		business.setName(getName(context));
 		business.setCategory(getCategory(context));
 		business.setStreet(getStreet(context));
@@ -75,7 +95,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		business.setHoliday(getOpeningTime(context, "Feestdag"));
 		business.setExtraInfo(getExtraInfo(context));
 		business.setLastModified(getLastModified(context));
-		
+
 		return business;
 	}
 
@@ -96,9 +116,9 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	private DailyOpeningTime getOpeningTime(Element context, String day) {
 		String am = null, pm = null;
 		Elements elements = context.select("td:nth-child(1)[align=CENTER]");
-		for(int i = 0; i < elements.size(); i++) {
+		for (int i = 0; i < elements.size(); i++) {
 			Element element = elements.get(i);
-			if(day.equals(element.text())) {
+			if (day.equals(element.text())) {
 				Element amElement = element.nextElementSibling();
 				am = amElement.text();
 				Element pmElement = amElement.nextElementSibling();
@@ -147,5 +167,5 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		String count = resultCountElement.text().replaceFirst(".*?(\\d+).*", "$1");
 		return Integer.parseInt(count);
 	}
-
+	
 }
