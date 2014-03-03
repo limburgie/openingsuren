@@ -51,9 +51,19 @@
         <item name="android:textStyle">bold</item>
     </style>
     
+    <style name="listSubtitle" parent="lightShadowedText">
+        <item name="android:textColor">@color/darker</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
     <style name="listDetail">
         <item name="android:textColor">@color/dark</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    
+    <style name="tableHeader" parent="listDetail">
+        <item name="android:textStyle">bold</item>
     </style>
     
     <style name="button">

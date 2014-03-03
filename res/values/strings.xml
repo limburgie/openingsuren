@@ -14,5 +14,15 @@
     <string name="x_results_found">%1$d stores were found.</string>
     <string name="no_results_found">No stores found. Refine your search criteria.</string>
     <string name="unexpected_error">An unexpected error occurred.</string>
+    <string name="opening_hours">Opening hours</string>
+    
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="holiday">Holiday</string>
 
 </resources>
