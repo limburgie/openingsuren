@@ -16,9 +16,9 @@ import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.adapter.BusinessAdapter;
 import be.webfactor.openinghours.domain.Business;
-import be.webfactor.openinghours.domain.BusinessSearchQuery;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
 import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
+import be.webfactor.openinghours.service.ErrorHandlerFactory;
 
 public class ResultsActivity extends Activity {
 
@@ -30,8 +30,17 @@ public class ResultsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		buildLayout();
-		initializeProgressBar();
 		populateResultList();
+	}
+
+	private void populateResultList() {
+		BusinessSearchResult result = (BusinessSearchResult) getIntent().getSerializableExtra(BusinessSearchResult.class.getName());
+		
+		int resultCount = result.getResultCount();
+		message.setText(getResources().getString(R.string.x_results_found, resultCount));
+
+		BusinessAdapter adapter = new BusinessAdapter(getApplicationContext(), result.getFirstResults());
+		resultList.setAdapter(adapter);
 	}
 
 	private void buildLayout() {
@@ -39,16 +48,14 @@ public class ResultsActivity extends Activity {
 		resultList = (ListView) findViewById(R.id.resultList);
 		resultList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				initializeProgressBar();
 				Business business = (Business) parent.getAdapter().getItem(position);
-
-				Intent i = new Intent(getApplicationContext(), DetailActivity.class);
-				i.putExtra(Business.class.getName(), business);
-				startActivity(i);
+				new FetchDetailTask().execute(business);
 			}
 		});
 		message = (TextView) findViewById(R.id.message);
 	}
-
+	
 	@SuppressLint("InlinedApi")
 	private void initializeProgressBar() {
 		if (Build.VERSION.SDK_INT >= 11) {
@@ -57,40 +64,32 @@ public class ResultsActivity extends Activity {
 			pd = new ProgressDialog(this);
 		}
 		pd.setTitle(getResources().getString(R.string.loading));
-		pd.setMessage(getResources().getString(R.string.retrieving_results));
+		pd.setMessage(getResources().getString(R.string.retrieving_details));
 		pd.show();
 	}
-
-	private void populateResultList() {
-		BusinessSearchQuery query = (BusinessSearchQuery) getIntent().getSerializableExtra(BusinessSearchQuery.class.getName());
-		new FetchResultsTask().execute(query);
-	}
-
-	private class FetchResultsTask extends AsyncTask<BusinessSearchQuery, Void, BusinessSearchResult> {
-		protected BusinessSearchResult doInBackground(BusinessSearchQuery... params) {
+	
+	private class FetchDetailTask extends AsyncTask<Business, Void, Business> {
+		protected Business doInBackground(Business... params) {
 			try {
-				return BusinessSearchServiceFactory.getInstance().findBusinesses(params[0]);
+				return BusinessSearchServiceFactory.getInstance().getDetail(params[0]);
 			} catch (Throwable t) {
-				Log.e(getClass().getName(), "Error while retrieving results", t);
+				Log.e(getClass().getName(), "Error while retrieving details", t);
 				return null;
 			}
 		}
-		
-		protected void onPostExecute(BusinessSearchResult result) {
-			pd.dismiss();
-			if (result == null) {
-				message.setText(getResources().getString(R.string.unexpected_error));
+
+		protected void onPostExecute(Business business) {
+			if (business == null) {
+				ErrorHandlerFactory.forContext(getBaseContext()).error(R.string.unexpected_error);
+				pd.dismiss();
 				return;
 			}
 			
-			int resultCount = result.getResultCount();
-			if (resultCount == 0) {
-				message.setText(getResources().getString(R.string.no_results_found));
-			} else {
-				message.setText(getResources().getString(R.string.x_results_found, resultCount));
-			}
-			BusinessAdapter adapter = new BusinessAdapter(getApplicationContext(), result.getFirstResults());
-			resultList.setAdapter(adapter);
+			Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+			i.putExtra(Business.class.getName(), business);
+			startActivity(i);
+			
+			pd.dismiss();
 		}
 	}
 

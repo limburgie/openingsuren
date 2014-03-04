@@ -11,6 +11,20 @@ import be.webfactor.openinghours.service.BusinessSearchService;
 public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 
 	public BusinessSearchResult findBusinesses(BusinessSearchQuery query) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(query.getWhat().equals("zero")) {
+			return new BusinessSearchResult();
+		}
+		
+		if(query.getWhat().equals("error")) {
+			throw new IllegalArgumentException();
+		}
+		
 		BusinessSearchResult result = new BusinessSearchResult();
 		result.setResultCount(234);
 		result.setFirstTenResults(
@@ -51,6 +65,14 @@ public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 	}
 
 	public Business getDetail(Business business) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		if(business.getName().equals("Business 3")) {
+			throw new IllegalArgumentException();
+		}
 		return business;
 	}
 

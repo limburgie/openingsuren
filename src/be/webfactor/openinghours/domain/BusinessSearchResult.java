@@ -1,9 +1,10 @@
 package be.webfactor.openinghours.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusinessSearchResult {
+public class BusinessSearchResult implements Serializable {
 
 	private int resultCount;
 	private List<Business> firstResults = new ArrayList<Business>();

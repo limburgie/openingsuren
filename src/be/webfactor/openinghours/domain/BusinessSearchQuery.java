@@ -1,8 +1,6 @@
 package be.webfactor.openinghours.domain;
 
-import java.io.Serializable;
-
-public class BusinessSearchQuery implements Serializable {
+public class BusinessSearchQuery {
 
 	private String what;
 	private String where;
