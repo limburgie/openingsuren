@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.domain.Business;
@@ -14,6 +16,7 @@ import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
 public class DetailActivity extends Activity {
 
 	private ProgressDialog pd;
+	private TextView message;
 	private TextView name;
 	private TextView category;
 	private TextView street;
@@ -36,17 +39,18 @@ public class DetailActivity extends Activity {
 	private TextView sundayPm;
 	private TextView holidayAm;
 	private TextView holidayPm;
-	
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		buildLayout();
 		retrieveBusinessDetail();
 	}
 
 	private void buildLayout() {
 		setContentView(R.layout.activity_detail);
-		
+
+		message = (TextView) findViewById(R.id.message);
 		name = (TextView) findViewById(R.id.name);
 		category = (TextView) findViewById(R.id.category);
 		street = (TextView) findViewById(R.id.street);
@@ -69,18 +73,18 @@ public class DetailActivity extends Activity {
 		sundayPm = (TextView) findViewById(R.id.sunday_pm);
 		holidayAm = (TextView) findViewById(R.id.holiday_am);
 		holidayPm = (TextView) findViewById(R.id.holiday_pm);
-		
+
 		initializeProgressBar();
 	}
-	
+
 	private void retrieveBusinessDetail() {
 		Business business = (Business) getIntent().getSerializableExtra(Business.class.getName());
 		new FetchDetailTask().execute(business);
 	}
-	
+
 	@SuppressLint("InlinedApi")
 	private void initializeProgressBar() {
-		if(Build.VERSION.SDK_INT >= 11) {
+		if (Build.VERSION.SDK_INT >= 11) {
 			pd = new ProgressDialog(this, ProgressDialog.THEME_HOLO_DARK);
 		} else {
 			pd = new ProgressDialog(this);
@@ -92,10 +96,21 @@ public class DetailActivity extends Activity {
 
 	private class FetchDetailTask extends AsyncTask<Business, Void, Business> {
 		protected Business doInBackground(Business... params) {
-			return BusinessSearchServiceFactory.getInstance().getDetail(params[0]);
+			try {
+				return BusinessSearchServiceFactory.getInstance().getDetail(params[0]);
+			} catch (Throwable t) {
+				Log.e(getClass().getName(), "Error while retrieving details", t);
+				return null;
+			}
 		}
-		
+
 		protected void onPostExecute(Business result) {
+			pd.dismiss();
+			if (result == null) {
+				message.setVisibility(View.VISIBLE);
+				message.setText(getResources().getString(R.string.unexpected_error));
+				return;
+			}
 			name.setText(result.getName());
 			category.setText(result.getCategory());
 			street.setText(result.getStreet());
@@ -118,9 +133,7 @@ public class DetailActivity extends Activity {
 			sundayPm.setText(result.getSunday().getPm());
 			holidayAm.setText(result.getHoliday().getAm());
 			holidayPm.setText(result.getHoliday().getPm());
-			
-			pd.dismiss();
 		}
 	}
-	
+
 }

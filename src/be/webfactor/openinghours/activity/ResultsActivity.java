@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -70,12 +71,18 @@ public class ResultsActivity extends Activity {
 			try {
 				return BusinessSearchServiceFactory.getInstance().findBusinesses(params[0]);
 			} catch (Throwable t) {
-				message.setText(getResources().getString(R.string.unexpected_error));
-				return new BusinessSearchResult();
+				Log.e(getClass().getName(), "Error while retrieving results", t);
+				return null;
 			}
 		}
-
+		
 		protected void onPostExecute(BusinessSearchResult result) {
+			pd.dismiss();
+			if (result == null) {
+				message.setText(getResources().getString(R.string.unexpected_error));
+				return;
+			}
+			
 			int resultCount = result.getResultCount();
 			if (resultCount == 0) {
 				message.setText(getResources().getString(R.string.no_results_found));
@@ -84,7 +91,6 @@ public class ResultsActivity extends Activity {
 			}
 			BusinessAdapter adapter = new BusinessAdapter(getApplicationContext(), result.getFirstResults());
 			resultList.setAdapter(adapter);
-			pd.dismiss();
 		}
 	}
 
