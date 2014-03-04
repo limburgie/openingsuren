@@ -1,6 +1,6 @@
 package be.webfactor.openinghours.service;
 
-import be.webfactor.openinghours.service.impl.BusinessSearchServiceOpeningsurenComImpl;
+import be.webfactor.openinghours.service.impl.BusinessSearchServiceMockImpl;
 
 public class BusinessSearchServiceFactory {
 
@@ -8,7 +8,7 @@ public class BusinessSearchServiceFactory {
 	
 	public static BusinessSearchService getInstance() {
 		if (SERVICE == null) {
-			SERVICE = new BusinessSearchServiceOpeningsurenComImpl();
+			SERVICE = new BusinessSearchServiceMockImpl();
 		}
 		return SERVICE;
 	}

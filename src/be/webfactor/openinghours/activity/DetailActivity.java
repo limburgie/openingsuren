@@ -115,8 +115,16 @@ public class DetailActivity extends Activity {
 			category.setText(result.getCategory());
 			street.setText(result.getStreet());
 			city.setText(result.getCity());
-			phone.setText(result.getPhone());
-			fax.setText(result.getFax());
+			if (result.getPhone() == null) {
+				phone.setVisibility(View.GONE);
+			} else {
+				phone.setText(result.getPhone());
+			}
+			if (result.getFax() == null) {
+				fax.setVisibility(View.GONE);
+			} else {
+				fax.setText(result.getFax());
+			}
 			mondayAm.setText(result.getMonday().getAm());
 			mondayPm.setText(result.getMonday().getPm());
 			tuesdayAm.setText(result.getTuesday().getAm());
