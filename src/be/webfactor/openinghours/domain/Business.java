@@ -1,8 +1,9 @@
 package be.webfactor.openinghours.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Business {
+public class Business implements Serializable {
 
 	private String name;
 	private String category;

@@ -5,11 +5,26 @@ import java.util.Arrays;
 import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.domain.BusinessSearchQuery;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
+import be.webfactor.openinghours.domain.DailyOpeningTime;
 import be.webfactor.openinghours.service.BusinessSearchService;
 
 public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 
 	public BusinessSearchResult findBusinesses(BusinessSearchQuery query) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if(query.getWhat().equals("zero")) {
+			return new BusinessSearchResult();
+		}
+		
+		if(query.getWhat().equals("error")) {
+			throw new IllegalArgumentException();
+		}
+		
 		BusinessSearchResult result = new BusinessSearchResult();
 		result.setResultCount(234);
 		result.setFirstTenResults(
@@ -37,10 +52,27 @@ public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 		business.setCategory(category);
 		business.setCity(city);
 		business.setOpen(open);
+		business.setStreet(city+"straat 123");
+		business.setMonday(new DailyOpeningTime("6:00 - 11:00", "13:00 - 18:00"));
+		business.setTuesday(new DailyOpeningTime("7:00 - 11:00", "14:00 - 18:00"));
+		business.setWednesday(new DailyOpeningTime("8:00 - 11:00", "15:00 - 18:00"));
+		business.setThursday(new DailyOpeningTime("7:00 - 11:00", "14:00 - 18:00"));
+		business.setFriday(new DailyOpeningTime("6:00 - 11:00", "13:00 - 18:00"));
+		business.setSaturday(new DailyOpeningTime("7:00 - 11:00", "14:00 - 18:00"));
+		business.setSunday(new DailyOpeningTime("8:00 - 11:00", "15:00 - 18:00"));
+		business.setHoliday(new DailyOpeningTime("9:00 - 11:00", null));
 		return business;
 	}
 
 	public Business getDetail(Business business) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		if(business.getName().equals("Business 3")) {
+			throw new IllegalArgumentException();
+		}
 		return business;
 	}
 

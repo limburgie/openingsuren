@@ -1,6 +1,8 @@
 package be.webfactor.openinghours.domain;
 
-public class DailyOpeningTime {
+import java.io.Serializable;
+
+public class DailyOpeningTime implements Serializable {
 
 	private final String am;
 	private final String pm;

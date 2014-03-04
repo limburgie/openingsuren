@@ -44,14 +44,16 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		result.setResultCount(getResultCount(resultsPage));
 
 		List<Business> firstTenResults = result.getFirstResults();
-		Elements rows = resultsPage.select("table[bordercolordark=#000266] tr");
+		Elements rows = resultsPage.select("table[bordercolordark=#000266]").first().select("tr");
 		for (int i = startIndex; i < rows.size() - 5; i++) {
 			Business business = new Business();
 			Elements columns = rows.get(i).select("td");
 			business.setOpen(columns.get(0).attr("bgcolor").equals("#33FF33"));
 			business.setName(columns.get(1).text());
+			business.setUrl(columns.get(1).select("a").attr("href"));
 			business.setCategory(columns.get(2).text());
 			business.setCity(columns.get(3).text().concat(" ").concat(columns.get(4).text()));
+			
 			firstTenResults.add(business);
 		}
 
@@ -139,7 +141,11 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	}
 
 	private String getPhone(Element context) {
-		return context.select("tr:nth-child(6) td").text().replaceAll("Telefoon", "").trim();
+		String phone = context.select("tr:nth-child(6) td").text();
+		if (phone.contains("Telefoon")) {
+			return phone.replaceAll("Telefoon", "").trim();
+		}
+		return null;
 	}
 
 	private String getProvince(Element context) {
