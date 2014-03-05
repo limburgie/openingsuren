@@ -85,25 +85,28 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int closed=0x7f060006;
-        public static final int friday=0x7f060012;
-        public static final int holiday=0x7f060015;
+        public static final int friday=0x7f060015;
+        public static final int holiday=0x7f060018;
         public static final int loading=0x7f060007;
-        public static final int monday=0x7f06000e;
-        public static final int no_results_found=0x7f06000b;
+        public static final int monday=0x7f060011;
+        public static final int more_then_300_results_found_showing_first_ten=0x7f06000c;
+        public static final int no_results_found=0x7f06000e;
         public static final int open=0x7f060005;
-        public static final int opening_hours=0x7f06000d;
+        public static final int opening_hours=0x7f060010;
         public static final int retrieving_details=0x7f060009;
         public static final int retrieving_results=0x7f060008;
-        public static final int saturday=0x7f060013;
+        public static final int saturday=0x7f060016;
         public static final int search=0x7f060004;
-        public static final int sunday=0x7f060014;
-        public static final int thursday=0x7f060011;
-        public static final int tuesday=0x7f06000f;
-        public static final int unexpected_error=0x7f06000c;
-        public static final int wednesday=0x7f060010;
+        public static final int sunday=0x7f060017;
+        public static final int thursday=0x7f060014;
+        public static final int too_many_results=0x7f06000d;
+        public static final int tuesday=0x7f060012;
+        public static final int unexpected_error=0x7f06000f;
+        public static final int wednesday=0x7f060013;
         public static final int what=0x7f060002;
         public static final int where=0x7f060003;
         public static final int x_results_found=0x7f06000a;
+        public static final int x_results_found_showing_first_ten=0x7f06000b;
     }
     public static final class style {
         /** 
