@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.domain.Business;
+import be.webfactor.openinghours.service.AdFactory;
 
 public class DetailActivity extends Activity {
 
@@ -34,8 +35,8 @@ public class DetailActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		buildLayout();
+		new AdFactory(this).setup();
 	}
 
 	private void buildLayout() {
@@ -73,12 +74,12 @@ public class DetailActivity extends Activity {
 		if (business.getPhone() == null) {
 			phone.setVisibility(View.GONE);
 		} else {
-			phone.setText(business.getPhone());
+			phone.setText(getResources().getString(R.string.tel_prefix, business.getPhone()));
 		}
 		if (business.getFax() == null) {
 			fax.setVisibility(View.GONE);
 		} else {
-			fax.setText(business.getFax());
+			fax.setText(getResources().getString(R.string.fax_prefix, business.getFax()));
 		}
 		mondayAm.setText(business.getMonday().getAm());
 		mondayPm.setText(business.getMonday().getPm());

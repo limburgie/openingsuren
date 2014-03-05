@@ -22,6 +22,7 @@ import be.webfactor.openinghours.service.ConnectionException;
 
 public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchService {
 
+	private static final String AD_PREFIX = "! ";
 	private static final String TOO_MANY_RESULTS = "Enkel de eerste 300 handelszaken worden getoond. Gelieve uw selectiecriteria eventueel te verfijnen.";
 	private static final String IP_BLOCKED = "Deze pagina is niet meer beschikbaar voor uw IP-adres";
 	private static final String BASE_URL = "http://www.openingsuren.com/";
@@ -49,7 +50,12 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 			Business business = new Business();
 			Elements columns = rows.get(i).select("td");
 			business.setOpen(columns.get(0).attr("bgcolor").equals("#33FF33"));
-			business.setName(columns.get(1).text());
+			String name = columns.get(1).text();
+			if(name.startsWith(AD_PREFIX)) {
+				name = name.replace(AD_PREFIX, "");
+				business.setAdvertised(true);
+			}
+			business.setName(name);
 			business.setUrl(columns.get(1).select("a").attr("href"));
 			business.setCategory(columns.get(2).text());
 			business.setCity(columns.get(3).text().concat(" ").concat(columns.get(4).text()));
@@ -66,7 +72,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 			throw new IPBlockedException();
 		}
 		Element resultTable = detailPage.select("table[bgcolor=#ffffcc]").first();
-		return createBusiness(resultTable);
+		return createBusiness(business, resultTable);
 	}
 
 	private Document connect(String url) {
@@ -77,28 +83,26 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		}
 	}
 
-	private Business createBusiness(Element context) {
-		Business business = new Business();
+	private Business createBusiness(Business business, Element context) {
+		Business result = business;
+		boolean advertised = result.isAdvertised();
 
-		business.setName(getName(context));
-		business.setCategory(getCategory(context));
-		business.setStreet(getStreet(context));
-		business.setCity(getCity(context));
-		business.setProvince(getProvince(context));
-		business.setPhone(getPhone(context));
-		business.setFax(getFax(context));
-		business.setMonday(getOpeningTime(context, "Maandag"));
-		business.setTuesday(getOpeningTime(context, "Dinsdag"));
-		business.setWednesday(getOpeningTime(context, "Woensdag"));
-		business.setThursday(getOpeningTime(context, "Donderdag"));
-		business.setFriday(getOpeningTime(context, "Vrijdag"));
-		business.setSaturday(getOpeningTime(context, "Zaterdag"));
-		business.setSunday(getOpeningTime(context, "Zondag"));
-		business.setHoliday(getOpeningTime(context, "Feestdag"));
-		business.setExtraInfo(getExtraInfo(context));
-		business.setLastModified(getLastModified(context));
+		result.setStreet(getStreet(advertised, context));
+		result.setProvince(getProvince(advertised, context));
+		result.setPhone(getPhone(advertised, context));
+		result.setFax(getFax(advertised, context));
+		result.setMonday(getOpeningTime(context, "Maandag"));
+		result.setTuesday(getOpeningTime(context, "Dinsdag"));
+		result.setWednesday(getOpeningTime(context, "Woensdag"));
+		result.setThursday(getOpeningTime(context, "Donderdag"));
+		result.setFriday(getOpeningTime(context, "Vrijdag"));
+		result.setSaturday(getOpeningTime(context, "Zaterdag"));
+		result.setSunday(getOpeningTime(context, "Zondag"));
+		result.setHoliday(getOpeningTime(context, "Feestdag"));
+		result.setExtraInfo(getExtraInfo(context));
+		result.setLastModified(getLastModified(context));
 
-		return business;
+		return result;
 	}
 
 	private Date getLastModified(Element context) {
@@ -132,40 +136,32 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		return new DailyOpeningTime(am, pm);
 	}
 
-	private String getFax(Element context) {
-		String result = context.select("tr:nth-child(7) td").text();
+	private String getFax(boolean advertised, Element context) {
+		int baseIndex = advertised ? 8 : 6;
+		String result = context.select("tr").get(baseIndex).select("td").text();
 		if (result.contains("Fax")) {
 			return result.replaceAll("Fax", "").trim();
 		}
 		return null;
 	}
 
-	private String getPhone(Element context) {
-		String phone = context.select("tr:nth-child(6) td").text();
+	private String getPhone(boolean advertised, Element context) {
+		int baseIndex = advertised ? 7 : 5;
+		String phone = context.select("tr").get(baseIndex).select("td").text();
 		if (phone.contains("Telefoon")) {
 			return phone.replaceAll("Telefoon", "").trim();
 		}
 		return null;
 	}
 
-	private String getProvince(Element context) {
-		return context.select("tr:nth-child(5) td").text().replaceAll("Provincie", "").trim();
+	private String getProvince(boolean advertised, Element context) {
+		int baseIndex = advertised ? 6 : 4;
+		return context.select("tr").get(baseIndex).select("td").text().replaceAll("Provincie", "").trim();
 	}
 
-	private String getCity(Element context) {
-		return context.select("tr:nth-child(4) td").text();
-	}
-
-	private String getStreet(Element context) {
-		return context.select("tr:nth-child(3) td").text();
-	}
-
-	private String getCategory(Element context) {
-		return context.select("tr:nth-child(2) a").text();
-	}
-
-	private String getName(Element context) {
-		return context.select("h1").first().text();
+	private String getStreet(boolean advertised, Element context) {
+		int baseIndex = advertised ? 4 : 2;
+		return context.select("tr").get(baseIndex).select("td").text();
 	}
 
 	private int getResultCount(Element context) {

@@ -17,11 +17,15 @@ import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.adapter.BusinessAdapter;
 import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
+import be.webfactor.openinghours.service.AdFactory;
 import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
 import be.webfactor.openinghours.service.ErrorHandlerFactory;
 
 public class ResultsActivity extends Activity {
 
+	private static final int MAX_RESULTS = 300;
+	private static final int RESULTS_PER_PAGE = 10;
+	
 	private ProgressDialog pd;
 	private ListView resultList;
 	private TextView message;
@@ -30,6 +34,7 @@ public class ResultsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		buildLayout();
+		new AdFactory(this).setup();
 		populateResultList();
 	}
 
@@ -37,7 +42,13 @@ public class ResultsActivity extends Activity {
 		BusinessSearchResult result = (BusinessSearchResult) getIntent().getSerializableExtra(BusinessSearchResult.class.getName());
 		
 		int resultCount = result.getResultCount();
-		message.setText(getResources().getString(R.string.x_results_found, resultCount));
+		if (resultCount == MAX_RESULTS) {
+			message.setText(getResources().getString(R.string.more_then_300_results_found_showing_first_ten));
+		} else if (resultCount > RESULTS_PER_PAGE) {
+			message.setText(getResources().getString(R.string.x_results_found_showing_first_ten, resultCount));
+		} else {
+			message.setText(getResources().getString(R.string.x_results_found, resultCount));
+		}
 
 		BusinessAdapter adapter = new BusinessAdapter(getApplicationContext(), result.getFirstResults());
 		resultList.setAdapter(adapter);
