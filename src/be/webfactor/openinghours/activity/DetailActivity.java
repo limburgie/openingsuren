@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.domain.Business;
+import be.webfactor.openinghours.service.AdFactory;
 
 public class DetailActivity extends Activity {
 
@@ -34,8 +35,8 @@ public class DetailActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		buildLayout();
+		new AdFactory(this).setup();
 	}
 
 	private void buildLayout() {

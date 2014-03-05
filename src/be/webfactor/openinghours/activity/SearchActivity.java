@@ -13,6 +13,7 @@ import android.widget.EditText;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.domain.BusinessSearchQuery;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
+import be.webfactor.openinghours.service.AdFactory;
 import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
 import be.webfactor.openinghours.service.ErrorHandler;
 import be.webfactor.openinghours.service.ErrorHandlerFactory;
@@ -26,6 +27,7 @@ public class SearchActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		buildLayout();
+		new AdFactory(this).setup();
 	}
 
 	private void buildLayout() {

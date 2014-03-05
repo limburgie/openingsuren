@@ -17,6 +17,7 @@ import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.adapter.BusinessAdapter;
 import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
+import be.webfactor.openinghours.service.AdFactory;
 import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
 import be.webfactor.openinghours.service.ErrorHandlerFactory;
 
@@ -33,6 +34,7 @@ public class ResultsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		buildLayout();
+		new AdFactory(this).setup();
 		populateResultList();
 	}
 
