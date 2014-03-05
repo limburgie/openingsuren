@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Business implements Serializable {
 
+	private boolean advertised;
 	private String name;
 	private String category;
 	private String street;
@@ -25,6 +26,14 @@ public class Business implements Serializable {
 	private DailyOpeningTime saturday;
 	private DailyOpeningTime sunday;
 	private DailyOpeningTime holiday;
+
+	public boolean isAdvertised() {
+		return advertised;
+	}
+
+	public void setAdvertised(boolean advertised) {
+		this.advertised = advertised;
+	}
 
 	public String getName() {
 		return name;
