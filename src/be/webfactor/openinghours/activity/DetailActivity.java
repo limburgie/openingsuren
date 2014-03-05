@@ -74,12 +74,12 @@ public class DetailActivity extends Activity {
 		if (business.getPhone() == null) {
 			phone.setVisibility(View.GONE);
 		} else {
-			phone.setText(business.getPhone());
+			phone.setText(getResources().getString(R.string.tel_prefix, business.getPhone()));
 		}
 		if (business.getFax() == null) {
 			fax.setVisibility(View.GONE);
 		} else {
-			fax.setText(business.getFax());
+			fax.setText(getResources().getString(R.string.fax_prefix, business.getFax()));
 		}
 		mondayAm.setText(business.getMonday().getAm());
 		mondayPm.setText(business.getMonday().getPm());
