@@ -35,6 +35,15 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		String safeCity = query.getWhere();
 
 		Document resultsPage = connect(String.format(SEARCH_FORMAT, safeName, safeCity));
+		return parseResult(resultsPage);
+	}
+
+	public BusinessSearchResult getMoreResults(BusinessSearchResult result) {
+		Document resultsPage = connect(BASE_URL + result.getNextResultPageUrl());
+		return parseResult(resultsPage);
+	}
+
+	private BusinessSearchResult parseResult(Document resultsPage) {
 		BusinessSearchResult result = new BusinessSearchResult();
 		if (resultsPage.text().contains(NO_RESULTS_FOUND)) {
 			return result;
@@ -45,14 +54,14 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		}
 		result.setResultCount(getResultCount(resultsPage));
 
-		List<Business> firstTenResults = result.getFirstResults();
+		List<Business> firstTenResults = result.getPageResults();
 		Elements rows = resultsPage.select("table[bordercolordark=#000266]").first().select("tr");
 		for (int i = startIndex; i < rows.size() - 5; i++) {
 			Business business = new Business();
 			Elements columns = rows.get(i).select("td");
 			business.setOpen(columns.get(0).attr("bgcolor").equals("#33FF33"));
 			String name = columns.get(1).text();
-			if(name.startsWith(AD_PREFIX)) {
+			if (name.startsWith(AD_PREFIX)) {
 				name = name.replace(AD_PREFIX, "");
 				business.setAdvertised(true);
 			}
@@ -60,8 +69,14 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 			business.setUrl(columns.get(1).select("a").attr("href"));
 			business.setCategory(columns.get(2).text());
 			business.setCity(columns.get(3).text().concat(" ").concat(columns.get(4).text()));
-			
+
 			firstTenResults.add(business);
+		}
+		Elements moreResultsLink = resultsPage.select("td[colspan=2][align=right] a");
+		if (moreResultsLink.isEmpty()) {
+			result.setNextResultPageUrl(null);
+		} else {
+			result.setNextResultPageUrl(moreResultsLink.first().attr("href"));
 		}
 
 		return result;
@@ -170,5 +185,5 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		String count = resultCountElement.text().replaceFirst(".*?(\\d+).*", "$1");
 		return Integer.parseInt(count);
 	}
-	
+
 }

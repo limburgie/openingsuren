@@ -12,10 +12,9 @@
     <string name="retrieving_results" translatable="false">Winkels aan het zoeken…</string>
     <string name="retrieving_details" translatable="false">Winkelgegevens aan het ophalen…</string>
     <string name="x_results_found" translatable="false">%1$d winkels gevonden.</string>
-    <string name="x_results_found_showing_first_ten" translatable="false">%1$d winkels gevonden. Enkel de eerste 10 worden getoond.</string>
-    <string name="more_then_300_results_found_showing_first_ten" translatable="false">Meer dan 300 winkels gevonden. Enkel de eerste 10 worden getoond.</string>
-    <string name="too_many_results" translatable="false">Te veel winkels gevonden. Verfijn je zoekopdracht.</string>
-    <string name="no_results_found" translatable="false">Geen winkels gevonden. Verfijn je zoekopdracht.</string>
+    <string name="x_results_found_showing_first_ten" translatable="false">%1$d winkels gevonden.</string>
+    <string name="more_then_300_results_found_showing_first_ten" translatable="false">Meer dan 300 winkels gevonden.</string>
+    <string name="no_results_found" translatable="false">Geen winkels gevonden. Verbreed je zoekopdracht.</string>
     <string name="unexpected_error" translatable="false">Een onverwachte fout is opgetreden.</string>
     <string name="opening_hours" translatable="false">Openingsuren</string>
     <string name="tel_prefix" translatable="false">T: %1$s</string>

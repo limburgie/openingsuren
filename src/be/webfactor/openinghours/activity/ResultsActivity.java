@@ -9,6 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -26,9 +28,15 @@ public class ResultsActivity extends Activity {
 	private static final int MAX_RESULTS = 300;
 	private static final int RESULTS_PER_PAGE = 10;
 	
+	private BusinessSearchResult searchResult;
+	
 	private ProgressDialog pd;
 	private ListView resultList;
 	private TextView message;
+	
+	private int visibleThreshold = 5;
+    private int previousTotal = 0;
+    private boolean loading = true;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,9 +47,9 @@ public class ResultsActivity extends Activity {
 	}
 
 	private void populateResultList() {
-		BusinessSearchResult result = (BusinessSearchResult) getIntent().getSerializableExtra(BusinessSearchResult.class.getName());
+		searchResult = (BusinessSearchResult) getIntent().getSerializableExtra(BusinessSearchResult.class.getName());
 		
-		int resultCount = result.getResultCount();
+		int resultCount = searchResult.getResultCount();
 		if (resultCount == MAX_RESULTS) {
 			message.setText(getResources().getString(R.string.more_then_300_results_found_showing_first_ten));
 		} else if (resultCount > RESULTS_PER_PAGE) {
@@ -50,7 +58,7 @@ public class ResultsActivity extends Activity {
 			message.setText(getResources().getString(R.string.x_results_found, resultCount));
 		}
 
-		BusinessAdapter adapter = new BusinessAdapter(getApplicationContext(), result.getFirstResults());
+		BusinessAdapter adapter = new BusinessAdapter(getApplicationContext(), searchResult.getPageResults());
 		resultList.setAdapter(adapter);
 	}
 
@@ -62,6 +70,23 @@ public class ResultsActivity extends Activity {
 				initializeProgressBar();
 				Business business = (Business) parent.getAdapter().getItem(position);
 				new FetchDetailTask().execute(business);
+			}
+		});
+		resultList.setOnScrollListener(new OnScrollListener() {
+			
+			public void onScrollStateChanged(AbsListView view, int scrollState) {}
+			
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+				if (loading) {
+		            if (totalItemCount > previousTotal) {
+		                loading = false;
+		                previousTotal = totalItemCount;
+		            }
+		        }
+		        if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold) && searchResult.hasMoreResults()) {
+		            new FetchMoreResultsTask().execute(searchResult);
+		            loading = true;
+		        }
 			}
 		});
 		message = (TextView) findViewById(R.id.message);
@@ -102,6 +127,20 @@ public class ResultsActivity extends Activity {
 			
 			pd.dismiss();
 		}
+	}
+	
+	private class FetchMoreResultsTask extends AsyncTask<BusinessSearchResult, Void, BusinessSearchResult> {
+
+		protected BusinessSearchResult doInBackground(BusinessSearchResult... params) {
+			return BusinessSearchServiceFactory.getInstance().getMoreResults(params[0]);
+		}
+		
+		protected void onPostExecute(BusinessSearchResult result) {
+			searchResult = result;
+			BusinessAdapter adapter = (BusinessAdapter) resultList.getAdapter();
+			adapter.addAll(result.getPageResults());
+		}
+		
 	}
 
 }

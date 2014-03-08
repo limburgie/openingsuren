@@ -29,7 +29,7 @@ public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 		
 		BusinessSearchResult result = new BusinessSearchResult();
 		result.setResultCount(234);
-		result.setFirstTenResults(
+		result.setPageResults(
 			Arrays.asList(
 				createBusiness("Business 1", "Auto-onderdelen", "3620 Lanaken", true), 
 				createBusiness("Business 2", "Vleeswaren", "3600 Genk", false),
@@ -80,6 +80,10 @@ public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 			throw new IllegalArgumentException();
 		}
 		return business;
+	}
+
+	public BusinessSearchResult getMoreResults(BusinessSearchResult result) {
+		return result;
 	}
 
 }
