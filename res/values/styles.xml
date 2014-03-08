@@ -64,6 +64,10 @@
         <item name="android:textSize">15sp</item>
     </style>
     
+    <style name="phone" parent="listDetail">
+        <item name="android:textStyle">bold</item>
+    </style>
+    
     <style name="tableHeader" parent="listDetail">
         <item name="android:textStyle">bold</item>
     </style>
