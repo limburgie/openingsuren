@@ -54,7 +54,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		}
 		result.setResultCount(getResultCount(resultsPage));
 
-		List<Business> firstTenResults = result.getFirstResults();
+		List<Business> firstTenResults = result.getPageResults();
 		Elements rows = resultsPage.select("table[bordercolordark=#000266]").first().select("tr");
 		for (int i = startIndex; i < rows.size() - 5; i++) {
 			Business business = new Business();

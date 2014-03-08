@@ -7,7 +7,7 @@ import java.util.List;
 public class BusinessSearchResult implements Serializable {
 
 	private int resultCount;
-	private List<Business> firstResults = new ArrayList<Business>();
+	private List<Business> pageResults = new ArrayList<Business>();
 	private String nextResultPageUrl;
 
 	public boolean hasMoreResults() {
@@ -22,12 +22,12 @@ public class BusinessSearchResult implements Serializable {
 		this.resultCount = resultCount;
 	}
 
-	public List<Business> getFirstResults() {
-		return firstResults;
+	public List<Business> getPageResults() {
+		return pageResults;
 	}
 
-	public void setFirstTenResults(List<Business> firstResults) {
-		this.firstResults = firstResults;
+	public void setPageResults(List<Business> pageResults) {
+		this.pageResults = pageResults;
 	}
 
 	public String getNextResultPageUrl() {
