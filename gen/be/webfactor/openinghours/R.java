@@ -435,16 +435,17 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f090001;
-        public static final int button=0x7f09000a;
+        public static final int button=0x7f09000b;
         public static final int darkShadowedText=0x7f090005;
         public static final int lightShadowedText=0x7f090004;
         public static final int listDetail=0x7f090008;
         public static final int listSubtitle=0x7f090007;
         public static final int listTitle=0x7f090006;
-        public static final int message=0x7f09000b;
+        public static final int message=0x7f09000c;
         public static final int openOrClosed=0x7f090003;
+        public static final int phone=0x7f090009;
         public static final int searchLabel=0x7f090002;
-        public static final int tableHeader=0x7f090009;
+        public static final int tableHeader=0x7f09000a;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

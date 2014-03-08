@@ -1,6 +1,8 @@
 package be.webfactor.openinghours.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +12,8 @@ import be.webfactor.openinghours.service.AdFactory;
 
 public class DetailActivity extends Activity {
 
+	private Business business;
+	
 	private TextView message;
 	private TextView name;
 	private TextView category;
@@ -36,6 +40,8 @@ public class DetailActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		business = (Business) getIntent().getSerializableExtra(Business.class.getName());
 		buildLayout();
 		new AdFactory(this).setup();
 	}
@@ -66,8 +72,6 @@ public class DetailActivity extends Activity {
 		sundayPm = (TextView) findViewById(R.id.sunday_pm);
 		holidayAm = (TextView) findViewById(R.id.holiday_am);
 		holidayPm = (TextView) findViewById(R.id.holiday_pm);
-		
-		Business business = (Business) getIntent().getSerializableExtra(Business.class.getName());
 		
 		message.setText(business.getLastReviewedLabel());
 		name.setText(business.getName());
@@ -100,6 +104,12 @@ public class DetailActivity extends Activity {
 		sundayPm.setText(business.getSunday().getPm());
 		holidayAm.setText(business.getHoliday().getAm());
 		holidayPm.setText(business.getHoliday().getPm());
+	}
+	
+	public void callPhoneNumber(View view) {
+		Intent intent = new Intent(Intent.ACTION_CALL);
+		intent.setData(Uri.parse("tel:"+business.getPhone()));
+		startActivity(intent);
 	}
 
 }

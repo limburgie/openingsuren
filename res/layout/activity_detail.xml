@@ -59,9 +59,11 @@
 
             <TextView
                 android:id="@+id/phone"
-                style="@style/listDetail"
+                style="@style/phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="callPhoneNumber" />
 
             <TextView
                 android:id="@+id/fax"
