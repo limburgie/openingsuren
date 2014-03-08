@@ -1,6 +1,8 @@
 package be.webfactor.openinghours.service.impl;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Random;
 
 import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.domain.BusinessSearchQuery;
@@ -63,6 +65,8 @@ public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 		business.setHoliday(new DailyOpeningTime("9:00 - 11:00", null));
 		business.setPhone("123 456 789");
 		business.setFax("987 654 321");
+		int random = new Random().nextInt(365*2);
+		business.setLastModified(new Date(System.currentTimeMillis() - 1000*60*60*24*(50+random)));
 		return business;
 	}
 

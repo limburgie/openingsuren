@@ -2,9 +2,14 @@ package be.webfactor.openinghours.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Locale;
+
+import org.ocpsoft.prettytime.PrettyTime;
 
 public class Business implements Serializable {
 
+	private static final String AGO_FORMAT = "%s voor het laatst gecontroleerd";
+	
 	private boolean advertised;
 	private String name;
 	private String category;
@@ -27,6 +32,11 @@ public class Business implements Serializable {
 	private DailyOpeningTime sunday;
 	private DailyOpeningTime holiday;
 
+	public String getLastReviewedLabel() {
+		String agoLabel = new PrettyTime(new Locale("nl")).format(lastModified);
+		return String.format(AGO_FORMAT, agoLabel);
+	}
+	
 	public boolean isAdvertised() {
 		return advertised;
 	}
