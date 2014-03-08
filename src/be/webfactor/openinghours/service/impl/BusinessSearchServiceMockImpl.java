@@ -82,4 +82,8 @@ public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 		return business;
 	}
 
+	public BusinessSearchResult getMoreResults(BusinessSearchResult result) {
+		return result;
+	}
+
 }

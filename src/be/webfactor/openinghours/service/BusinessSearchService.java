@@ -8,6 +8,8 @@ public interface BusinessSearchService {
 
 	BusinessSearchResult findBusinesses(BusinessSearchQuery query);
 	
+	BusinessSearchResult getMoreResults(BusinessSearchResult result);
+	
 	Business getDetail(Business business);
 	
 }
