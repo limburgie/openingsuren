@@ -9,8 +9,8 @@
     <string name="open" translatable="false">Open</string>
     <string name="closed" translatable="false">Gesloten</string>
     <string name="loading" translatable="false">Laden…</string>
-    <string name="retrieving_results" translatable="false">Resultaten ophalen…</string>
-    <string name="retrieving_details" translatable="false">Details ophalen…</string>
+    <string name="retrieving_results" translatable="false">Winkels aan het zoeken…</string>
+    <string name="retrieving_details" translatable="false">Winkelgegevens aan het ophalen…</string>
     <string name="x_results_found" translatable="false">%1$d winkels gevonden.</string>
     <string name="x_results_found_showing_first_ten" translatable="false">%1$d winkels gevonden. Enkel de eerste 10 worden getoond.</string>
     <string name="more_then_300_results_found_showing_first_ten" translatable="false">Meer dan 300 winkels gevonden. Enkel de eerste 10 worden getoond.</string>
