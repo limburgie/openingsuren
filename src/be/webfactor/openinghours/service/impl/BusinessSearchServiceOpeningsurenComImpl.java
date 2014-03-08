@@ -1,6 +1,7 @@
 package be.webfactor.openinghours.service.impl;
 
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,7 +78,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 
 	private Document connect(String url) {
 		try {
-			return Jsoup.connect(url).get();
+			return Jsoup.parse(new URL(url).openStream(), "ISO-8859-1", url);
 		} catch (IOException e) {
 			throw new ConnectionException(e);
 		}
