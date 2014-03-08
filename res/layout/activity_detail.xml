@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/message"
-            style="@style/message_light"
+            style="@style/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
