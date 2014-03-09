@@ -14,6 +14,8 @@ public interface TranslatedLabelInfo {
 	
 	String getFaxLabel();
 	
+	boolean hasProvinceInfo();
+	
 	String getProvinceLabel();
 	
 	String getMondayLabel();

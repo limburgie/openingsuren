@@ -1,77 +1,77 @@
 package be.webfactor.openinghours.service.impl;
 
-public class DutchTranslatedLabelInfo implements TranslatedLabelInfo {
+public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 
 	public String getTooManyResultsLabel() {
-		return "Enkel de eerste 300 handelszaken worden getoond. Gelieve uw selectiecriteria eventueel te verfijnen.";
+		return "Seuls les 300 premiers résultats de la recherche sont affichés.";
 	}
 
 	public String getIpBlockedLabel() {
-		return "Deze pagina is niet meer beschikbaar voor uw IP-adres";
+		return "Vous n'est pas autorisé a accéder au contenu de cette page";
 	}
 
 	public String getBaseUrl() {
-		return "http://www.openingsuren.com/";
+		return "http://www.heures-douverture.com/";
 	}
 
 	public String getNoResultsFoundLabel() {
-		return "Gevraagde openingsuren niet gevonden.";
+		return "Malhereusement les heures d'ouvertures demandés ne sont pas disponibles.";
 	}
 
 	public String getPhoneLabel() {
-		return "Telefoon";
+		return "Téléphone";
 	}
 
 	public String getFaxLabel() {
-		return "Fax";
+		return "Téléfax";
 	}
 	
 	public boolean hasProvinceInfo() {
-		return true;
+		return false;
 	}
 
 	public String getProvinceLabel() {
-		return "Provincie";
+		return null;
 	}
 
 	public String getMondayLabel() {
-		return "Maandag";
+		return "Lundi";
 	}
 
 	public String getTuesdayLabel() {
-		return "Dinsdag";
+		return "Mardi";
 	}
 
 	public String getWednesdayLabel() {
-		return "Woensdag";
+		return "Mercredi";
 	}
 
 	public String getThursdayLabel() {
-		return "Donderdag";
+		return "Jeudi";
 	}
 
 	public String getFridayLabel() {
-		return "Vrijdag";
+		return "Vendredi";
 	}
 
 	public String getSaturdayLabel() {
-		return "Zaterdag";
+		return "Samedi";
 	}
 
 	public String getSundayLabel() {
-		return "Zondag";
+		return "Dimanche";
 	}
 
 	public String getHolidayLabel() {
-		return "Feestdag";
+		return "Jour Férié";
 	}
 
 	public String getLastReviewedDateFormat() {
-		return "'Openingsuren laatst gecontroleerd op 'd MMMMM yyyy";
+		return "'Dernier contrôle des heures d''ouverture le 'd MMMMM yyyy";
 	}
 
 	public String getLanguage() {
-		return "nl";
+		return "fr";
 	}
 
 }

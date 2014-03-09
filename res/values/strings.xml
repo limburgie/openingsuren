@@ -17,8 +17,8 @@
     <string name="no_results_found" translatable="false">Geen winkels gevonden. Verbreed je zoekopdracht.</string>
     <string name="unexpected_error" translatable="false">Een onverwachte fout is opgetreden.</string>
     <string name="opening_hours" translatable="false">Openingsuren</string>
-    <string name="tel_prefix" translatable="false">T: %1$s</string>
-    <string name="fax_prefix" translatable="false">F: %1$s</string>
+    <string name="tel_prefix" translatable="false">T. %1$s</string>
+    <string name="fax_prefix" translatable="false">F. %1$s</string>
     
     <string name="monday" translatable="false">Maandag</string>
     <string name="tuesday" translatable="false">Dinsdag</string>

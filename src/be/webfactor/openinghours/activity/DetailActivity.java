@@ -73,7 +73,12 @@ public class DetailActivity extends Activity {
 		holidayAm = (TextView) findViewById(R.id.holiday_am);
 		holidayPm = (TextView) findViewById(R.id.holiday_pm);
 		
-		message.setText(business.getLastReviewedLabel());
+		String lastReviewedLabel = business.getLastReviewedLabel();
+		if (lastReviewedLabel == null) {
+			message.setVisibility(View.GONE);
+		} else {
+			message.setText(lastReviewedLabel);
+		}
 		name.setText(business.getName());
 		category.setText(business.getCategory());
 		street.setText(business.getStreet());

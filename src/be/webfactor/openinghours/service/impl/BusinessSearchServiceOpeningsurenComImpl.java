@@ -29,7 +29,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	private TranslatedLabelInfo labels;
 
 	public BusinessSearchServiceOpeningsurenComImpl() {
-		labels = new DutchTranslatedLabelInfo();
+		labels = new FrenchTranslatedLabelInfo();
 	}
 	
 	public BusinessSearchResult findBusinesses(BusinessSearchQuery query) {
@@ -124,7 +124,11 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	}
 
 	private Date getLastModified(Element context) {
-		String lastModifiedText = context.select("font[size=1]").first().text();
+		Elements lastModifiedDateElement = context.select("font[size=1]");
+		if (lastModifiedDateElement.isEmpty()) {
+			return null;
+		}
+		String lastModifiedText = lastModifiedDateElement.first().text();
 		DateFormat dateFormat = new SimpleDateFormat(labels.getLastReviewedDateFormat(), new Locale(labels.getLanguage()));
 		try {
 			return dateFormat.parse(lastModifiedText);
@@ -155,7 +159,13 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	}
 
 	private String getFax(boolean advertised, Element context) {
-		int baseIndex = advertised ? 8 : 6;
+		int baseIndex = 6;
+		if (advertised) {
+			baseIndex += 2;
+		}
+		if (!labels.hasProvinceInfo()) {
+			baseIndex--;
+		}
 		String result = context.select("tr").get(baseIndex).select("td").text();
 		if (result.contains(labels.getFaxLabel())) {
 			return result.replaceAll(labels.getFaxLabel(), "").trim();
@@ -164,7 +174,13 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	}
 
 	private String getPhone(boolean advertised, Element context) {
-		int baseIndex = advertised ? 7 : 5;
+		int baseIndex = 5;
+		if (advertised) {
+			baseIndex += 2;
+		}
+		if (!labels.hasProvinceInfo()) {
+			baseIndex--;
+		}
 		String phone = context.select("tr").get(baseIndex).select("td").text();
 		if (phone.contains(labels.getPhoneLabel())) {
 			return phone.replaceAll(labels.getPhoneLabel(), "").trim();
@@ -173,6 +189,9 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	}
 
 	private String getProvince(boolean advertised, Element context) {
+		if (!labels.hasProvinceInfo()) {
+			return null;
+		}
 		int baseIndex = advertised ? 6 : 4;
 		return context.select("tr").get(baseIndex).select("td").text().replaceAll(labels.getProvinceLabel(), "").trim();
 	}

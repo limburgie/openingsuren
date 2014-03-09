@@ -33,6 +33,9 @@ public class Business implements Serializable {
 	private DailyOpeningTime holiday;
 
 	public String getLastReviewedLabel() {
+		if (lastModified == null) {
+			return null;
+		}
 		String agoLabel = new PrettyTime(new Locale("nl")).format(lastModified);
 		return String.format(AGO_FORMAT, agoLabel);
 	}
