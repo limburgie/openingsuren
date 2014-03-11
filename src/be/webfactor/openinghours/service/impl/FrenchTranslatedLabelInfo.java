@@ -2,7 +2,7 @@ package be.webfactor.openinghours.service.impl;
 
 public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 
-	private static final String LAST_REVIEWED_LABEL = "Dernier contrôle des heures d''ouverture le ";
+	private static final String LAST_REVIEWED_LABEL = "Dernier contrôle des heures d'ouverture le ";
 
 	public String getTooManyResultsLabel() {
 		return "Seuls les 300 premiers résultats de la recherche sont affichés.";

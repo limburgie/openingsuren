@@ -153,7 +153,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	}
 
 	private Date getLastModified(Element context) {
-		Elements lastModifiedDateElement = context.select("font[size=1]");
+		Elements lastModifiedDateElement = context.select("font[size][color=#000266]");
 		if (!lastModifiedDateElement.isEmpty()) {
 			for (Element element : lastModifiedDateElement) {
 				if (element.text().contains(labels.getLastReviewedLabel())) {
