@@ -13,11 +13,18 @@ public class DailyOpeningTime implements Serializable {
 	}
 
 	public String getAm() {
-		return am;
+		return compact(am);
 	}
 
 	public String getPm() {
-		return pm;
+		return compact(pm);
+	}
+	
+	private String compact(String hours) {
+		if (hours == null) {
+			return null;
+		}
+		return hours.replace(" - ", "-").replace(" ˆ ", "-");
 	}
 
 }
