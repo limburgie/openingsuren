@@ -34,6 +34,8 @@ public interface TranslatedLabelInfo {
 	
 	String getHolidayLabel();
 	
+	String getLastReviewedLabel();
+	
 	String getLastReviewedDateFormat();
 	
 	String getLanguage();

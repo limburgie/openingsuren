@@ -2,6 +2,8 @@ package be.webfactor.openinghours.service.impl;
 
 public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 
+	private static final String LAST_REVIEWED_LABEL = "Dernier contrôle des heures d''ouverture le ";
+
 	public String getTooManyResultsLabel() {
 		return "Seuls les 300 premiers résultats de la recherche sont affichés.";
 	}
@@ -25,7 +27,7 @@ public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 	public String getFaxLabel() {
 		return "Téléfax";
 	}
-	
+
 	public boolean hasProvinceInfo() {
 		return false;
 	}
@@ -66,8 +68,12 @@ public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 		return "Jour Férié";
 	}
 
+	public String getLastReviewedLabel() {
+		return LAST_REVIEWED_LABEL;
+	}
+
 	public String getLastReviewedDateFormat() {
-		return "'Dernier contrôle des heures d''ouverture le 'd MMMMM yyyy";
+		return "'" + LAST_REVIEWED_LABEL.replace("'", "''") + "'d MMMMM yyyy";
 	}
 
 	public String getLanguage() {

@@ -25,13 +25,17 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 
 	private static final String AD_PREFIX = "! ";
 	private static final String SEARCH_QUERY = "lijst.php?zoekveld=%s&veldgem=%s";
-	
+
 	private TranslatedLabelInfo labels;
 
 	public BusinessSearchServiceOpeningsurenComImpl() {
-		labels = new FrenchTranslatedLabelInfo();
+		if (Locale.getDefault().getLanguage().equals("fr")) {
+			labels = new FrenchTranslatedLabelInfo();
+		} else {
+			labels = new DutchTranslatedLabelInfo();
+		}
 	}
-	
+
 	public BusinessSearchResult findBusinesses(BusinessSearchQuery query) {
 		String safeName = query.getWhat();
 		String safeCity = query.getWhere();
@@ -103,12 +107,28 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 
 	private Business createBusiness(Business business, Element context) {
 		Business result = business;
-		boolean advertised = result.isAdvertised();
 
-		result.setStreet(getStreet(advertised, context));
-		result.setProvince(getProvince(advertised, context));
-		result.setPhone(getPhone(advertised, context));
-		result.setFax(getFax(advertised, context));
+		Element row = getBaseRow(context);
+		// street
+		row = row.nextElementSibling().nextElementSibling();
+		result.setStreet(row.text());
+		row = row.nextElementSibling();
+		// province
+		if (labels.hasProvinceInfo()) {
+			row = row.nextElementSibling();
+			result.setProvince(row.text().replace(labels.getProvinceLabel(), ""));
+		}
+		// phone
+		row = row.nextElementSibling();
+		if (row.text().contains(labels.getPhoneLabel())) {
+			result.setPhone(row.text().replace(labels.getPhoneLabel(), ""));
+		}
+		// fax
+		row = row.nextElementSibling();
+		if (row.text().contains(labels.getFaxLabel())) {
+			result.setFax(row.text().replace(labels.getFaxLabel(), ""));
+		}
+
 		result.setMonday(getOpeningTime(context, labels.getMondayLabel()));
 		result.setTuesday(getOpeningTime(context, labels.getTuesdayLabel()));
 		result.setWednesday(getOpeningTime(context, labels.getWednesdayLabel()));
@@ -123,18 +143,31 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		return result;
 	}
 
+	private Element getBaseRow(Element table) {
+		for (Element row : table.select("tr")) {
+			if (row.select("h1").size() > 0 || row.select("font[size=4]").size() > 0) {
+				return row;
+			}
+		}
+		return null;
+	}
+
 	private Date getLastModified(Element context) {
 		Elements lastModifiedDateElement = context.select("font[size=1]");
-		if (lastModifiedDateElement.isEmpty()) {
-			return null;
+		if (!lastModifiedDateElement.isEmpty()) {
+			for (Element element : lastModifiedDateElement) {
+				if (element.text().contains(labels.getLastReviewedLabel())) {
+					DateFormat dateFormat = new SimpleDateFormat(labels.getLastReviewedDateFormat(), new Locale(labels.getLanguage()));
+					try {
+						return dateFormat.parse(element.text());
+					} catch (ParseException e) {
+						return null;
+					}
+
+				}
+			}
 		}
-		String lastModifiedText = lastModifiedDateElement.first().text();
-		DateFormat dateFormat = new SimpleDateFormat(labels.getLastReviewedDateFormat(), new Locale(labels.getLanguage()));
-		try {
-			return dateFormat.parse(lastModifiedText);
-		} catch (ParseException e) {
-			return null;
-		}
+		return null;
 	}
 
 	private String getExtraInfo(Element context) {
@@ -156,49 +189,6 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 			}
 		}
 		return new DailyOpeningTime(am, pm);
-	}
-
-	private String getFax(boolean advertised, Element context) {
-		int baseIndex = 6;
-		if (advertised) {
-			baseIndex += 2;
-		}
-		if (!labels.hasProvinceInfo()) {
-			baseIndex--;
-		}
-		String result = context.select("tr").get(baseIndex).select("td").text();
-		if (result.contains(labels.getFaxLabel())) {
-			return result.replaceAll(labels.getFaxLabel(), "").trim();
-		}
-		return null;
-	}
-
-	private String getPhone(boolean advertised, Element context) {
-		int baseIndex = 5;
-		if (advertised) {
-			baseIndex += 2;
-		}
-		if (!labels.hasProvinceInfo()) {
-			baseIndex--;
-		}
-		String phone = context.select("tr").get(baseIndex).select("td").text();
-		if (phone.contains(labels.getPhoneLabel())) {
-			return phone.replaceAll(labels.getPhoneLabel(), "").trim();
-		}
-		return null;
-	}
-
-	private String getProvince(boolean advertised, Element context) {
-		if (!labels.hasProvinceInfo()) {
-			return null;
-		}
-		int baseIndex = advertised ? 6 : 4;
-		return context.select("tr").get(baseIndex).select("td").text().replaceAll(labels.getProvinceLabel(), "").trim();
-	}
-
-	private String getStreet(boolean advertised, Element context) {
-		int baseIndex = advertised ? 4 : 2;
-		return context.select("tr").get(baseIndex).select("td").text();
 	}
 
 	private int getResultCount(Element context) {

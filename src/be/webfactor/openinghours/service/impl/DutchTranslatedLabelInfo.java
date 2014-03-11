@@ -2,6 +2,8 @@ package be.webfactor.openinghours.service.impl;
 
 public class DutchTranslatedLabelInfo implements TranslatedLabelInfo {
 
+	private static final String LAST_REVIEWED_LABEL = "Openingsuren laatst gecontroleerd op";
+
 	public String getTooManyResultsLabel() {
 		return "Enkel de eerste 300 handelszaken worden getoond. Gelieve uw selectiecriteria eventueel te verfijnen.";
 	}
@@ -25,7 +27,7 @@ public class DutchTranslatedLabelInfo implements TranslatedLabelInfo {
 	public String getFaxLabel() {
 		return "Fax";
 	}
-	
+
 	public boolean hasProvinceInfo() {
 		return true;
 	}
@@ -65,9 +67,13 @@ public class DutchTranslatedLabelInfo implements TranslatedLabelInfo {
 	public String getHolidayLabel() {
 		return "Feestdag";
 	}
+	
+	public String getLastReviewedLabel() {
+		return LAST_REVIEWED_LABEL;
+	}
 
 	public String getLastReviewedDateFormat() {
-		return "'Openingsuren laatst gecontroleerd op 'd MMMMM yyyy";
+		return "'" + LAST_REVIEWED_LABEL + "'d MMMMM yyyy";
 	}
 
 	public String getLanguage() {
