@@ -61,7 +61,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		for (int i = startIndex; i < rows.size() - 5; i++) {
 			Business business = new Business();
 			Elements columns = rows.get(i).select("td");
-			business.setOpen(!columns.get(0).attr("bgcolor").equals("RED"));
+			business.setOpen(!columns.get(0).attr("bgcolor").equals("red"));
 			String name = columns.get(1).text();
 			if (name.startsWith(AD_PREFIX)) {
 				name = name.replace(AD_PREFIX, "");
