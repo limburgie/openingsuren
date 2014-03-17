@@ -311,7 +311,6 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
-        public static final int closed=0x7f060020;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -383,30 +382,28 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
-        public static final int fax_prefix=0x7f06002c;
-        public static final int friday=0x7f060031;
-        public static final int holiday=0x7f060034;
-        public static final int loading=0x7f060021;
-        public static final int monday=0x7f06002d;
-        public static final int more_then_300_results_found_showing_first_ten=0x7f060026;
-        public static final int no_results_found=0x7f060028;
-        public static final int open=0x7f06001f;
-        public static final int opening_hours=0x7f06002a;
-        public static final int retrieving_details=0x7f060023;
-        public static final int retrieving_results=0x7f060022;
-        public static final int saturday=0x7f060032;
+        public static final int fax_prefix=0x7f060028;
+        public static final int friday=0x7f06002e;
+        public static final int holiday=0x7f060031;
+        public static final int last_verified_format=0x7f060029;
+        public static final int loading=0x7f06001f;
+        public static final int monday=0x7f06002a;
+        public static final int more_than_300_results_found=0x7f060023;
+        public static final int no_results_found=0x7f060024;
+        public static final int opening_hours=0x7f060026;
+        public static final int retrieving_details=0x7f060021;
+        public static final int retrieving_results=0x7f060020;
+        public static final int saturday=0x7f06002f;
         public static final int search=0x7f06001e;
-        public static final int sunday=0x7f060033;
-        public static final int tel_prefix=0x7f06002b;
-        public static final int thursday=0x7f060030;
-        public static final int too_many_results=0x7f060027;
-        public static final int tuesday=0x7f06002e;
-        public static final int unexpected_error=0x7f060029;
-        public static final int wednesday=0x7f06002f;
+        public static final int sunday=0x7f060030;
+        public static final int tel_prefix=0x7f060027;
+        public static final int thursday=0x7f06002d;
+        public static final int tuesday=0x7f06002b;
+        public static final int unexpected_error=0x7f060025;
+        public static final int wednesday=0x7f06002c;
         public static final int what=0x7f06001c;
         public static final int where=0x7f06001d;
-        public static final int x_results_found=0x7f060024;
-        public static final int x_results_found_showing_first_ten=0x7f060025;
+        public static final int x_results_found=0x7f060022;
     }
     public static final class style {
         /** 
@@ -435,16 +432,17 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f090001;
-        public static final int button=0x7f09000a;
+        public static final int button=0x7f09000b;
         public static final int darkShadowedText=0x7f090005;
         public static final int lightShadowedText=0x7f090004;
         public static final int listDetail=0x7f090008;
         public static final int listSubtitle=0x7f090007;
         public static final int listTitle=0x7f090006;
-        public static final int message=0x7f09000b;
+        public static final int message=0x7f09000c;
         public static final int openOrClosed=0x7f090003;
+        public static final int phone=0x7f090009;
         public static final int searchLabel=0x7f090002;
-        public static final int tableHeader=0x7f090009;
+        public static final int tableHeader=0x7f09000a;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.
