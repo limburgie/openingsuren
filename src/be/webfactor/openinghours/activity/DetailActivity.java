@@ -13,7 +13,7 @@ import be.webfactor.openinghours.service.AdFactory;
 public class DetailActivity extends Activity {
 
 	private Business business;
-	
+
 	private TextView message;
 	private TextView name;
 	private TextView category;
@@ -40,7 +40,7 @@ public class DetailActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		business = (Business) getIntent().getSerializableExtra(Business.class.getName());
 		buildLayout();
 		new AdFactory(this).setup();
@@ -72,8 +72,14 @@ public class DetailActivity extends Activity {
 		sundayPm = (TextView) findViewById(R.id.sunday_pm);
 		holidayAm = (TextView) findViewById(R.id.holiday_am);
 		holidayPm = (TextView) findViewById(R.id.holiday_pm);
-		
-		message.setText(business.getLastReviewedLabel());
+
+		String lastVerifiedFormat = getResources().getString(R.string.last_verified_format);
+		String lastReviewedLabel = business.getLastReviewedLabel(lastVerifiedFormat);
+		if (lastReviewedLabel == null) {
+			message.setVisibility(View.GONE);
+		} else {
+			message.setText(lastReviewedLabel);
+		}
 		name.setText(business.getName());
 		category.setText(business.getCategory());
 		street.setText(business.getStreet());
@@ -105,10 +111,10 @@ public class DetailActivity extends Activity {
 		holidayAm.setText(business.getHoliday().getAm());
 		holidayPm.setText(business.getHoliday().getPm());
 	}
-	
+
 	public void callPhoneNumber(View view) {
 		Intent intent = new Intent(Intent.ACTION_CALL);
-		intent.setData(Uri.parse("tel:"+business.getPhone()));
+		intent.setData(Uri.parse("tel:" + business.getPhone()));
 		startActivity(intent);
 	}
 

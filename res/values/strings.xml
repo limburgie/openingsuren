@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" translatable="false">Openingsuren BE</string>
-    <string name="action_settings" translatable="false">Instellingen</string>
-    <string name="what" translatable="false">Winkel</string>
-    <string name="where" translatable="false">Gemeente / Postcode</string>
-    <string name="search" translatable="false">Zoeken</string>
-    <string name="open" translatable="false">Open</string>
-    <string name="closed" translatable="false">Gesloten</string>
-    <string name="loading" translatable="false">Laden…</string>
-    <string name="retrieving_results" translatable="false">Winkels aan het zoeken…</string>
-    <string name="retrieving_details" translatable="false">Winkelgegevens aan het ophalen…</string>
-    <string name="x_results_found" translatable="false">%1$d winkels gevonden.</string>
-    <string name="x_results_found_showing_first_ten" translatable="false">%1$d winkels gevonden.</string>
-    <string name="more_then_300_results_found_showing_first_ten" translatable="false">Meer dan 300 winkels gevonden.</string>
-    <string name="no_results_found" translatable="false">Geen winkels gevonden. Verbreed je zoekopdracht.</string>
-    <string name="unexpected_error" translatable="false">Een onverwachte fout is opgetreden.</string>
-    <string name="opening_hours" translatable="false">Openingsuren</string>
-    <string name="tel_prefix" translatable="false">T: %1$s</string>
-    <string name="fax_prefix" translatable="false">F: %1$s</string>
-    
-    <string name="monday" translatable="false">Maandag</string>
-    <string name="tuesday" translatable="false">Dinsdag</string>
-    <string name="wednesday" translatable="false">Woensdag</string>
-    <string name="thursday" translatable="false">Donderdag</string>
-    <string name="friday" translatable="false">Vrijdag</string>
-    <string name="saturday" translatable="false">Zaterdag</string>
-    <string name="sunday" translatable="false">Zondag</string>
-    <string name="holiday" translatable="false">Feestdagen</string>
+    <string name="app_name">Openingsuren BE</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="what">Winkel</string>
+    <string name="where">Gemeente / Postcode</string>
+    <string name="search">Zoeken</string>
+    <string name="open">Open</string>
+    <string name="closed">Gesloten</string>
+    <string name="loading">Laden…</string>
+    <string name="retrieving_results">Winkels aan het zoeken…</string>
+    <string name="retrieving_details">Winkelgegevens aan het ophalen…</string>
+    <string name="x_results_found">%1$d winkels gevonden.</string>
+    <string name="more_than_300_results_found">Meer dan 300 winkels gevonden.</string>
+    <string name="no_results_found">Geen winkels gevonden. Verbreed je zoekopdracht.</string>
+    <string name="unexpected_error">Een onverwachte fout is opgetreden.</string>
+    <string name="opening_hours">Openingsuren</string>
+    <string name="tel_prefix">T. %1$s</string>
+    <string name="fax_prefix">F. %1$s</string>
+    <string name="last_verified_format">%1$s voor het laatst gecontroleerd</string>
+    <string name="monday">Maandag</string>
+    <string name="tuesday">Dinsdag</string>
+    <string name="wednesday">Woensdag</string>
+    <string name="thursday">Donderdag</string>
+    <string name="friday">Vrijdag</string>
+    <string name="saturday">Zaterdag</string>
+    <string name="sunday">Zondag</string>
+    <string name="holiday">Feestdagen</string>
 
 </resources>

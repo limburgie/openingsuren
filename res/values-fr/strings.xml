@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Heures d\'Ouverture BE</string>
+    <string name="action_settings">Configuration</string>
+    <string name="what">Commerce</string>
+    <string name="where">Commune / Code postal</string>
+    <string name="search">Trouver</string>
+    <string name="open">Ouvert</string>
+    <string name="closed">Fermé</string>
+    <string name="loading">Charger…</string>
+    <string name="retrieving_results">Trouver des commerces…</string>
+    <string name="retrieving_details">Télécharger les détails du commerce…</string>
+    <string name="x_results_found">Trouvé %1$d commerces.</string>
+    <string name="more_than_300_results_found">Trouvé plus de 300 commerces.</string>
+    <string name="no_results_found">Trouvé rien. Elargissez votre récherche.</string>
+    <string name="unexpected_error">Une erreur inattendue s\'est produite.</string>
+    <string name="opening_hours">Heures d\'ouverture</string>
+    <string name="tel_prefix">T. %1$s</string>
+    <string name="fax_prefix">F. %1$s</string>
+    <string name="last_verified_format">Dernière vérification %1$s</string>
+    <string name="monday">Lundi</string>
+    <string name="tuesday">Mardi</string>
+    <string name="wednesday">Mercredi</string>
+    <string name="thursday">Jeudi</string>
+    <string name="friday">Vendredi</string>
+    <string name="saturday">Samedi</string>
+    <string name="sunday">Dimanche</string>
+    <string name="holiday">Jour férié</string>
+
+</resources>
