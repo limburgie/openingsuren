@@ -135,7 +135,7 @@ public class ResultsActivity extends Activity {
 		protected void onPostExecute(BusinessSearchResult result) {
 			searchResult = result;
 			BusinessAdapter adapter = (BusinessAdapter) resultList.getAdapter();
-			adapter.addAll(result.getPageResults());
+			adapter.setData(result.getPageResults());
 		}
 		
 	}
