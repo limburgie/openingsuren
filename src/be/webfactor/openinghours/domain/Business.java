@@ -8,8 +8,6 @@ import org.ocpsoft.prettytime.PrettyTime;
 
 public class Business implements Serializable {
 
-	private static final String AGO_FORMAT = "%s voor het laatst gecontroleerd";
-	
 	private boolean advertised;
 	private String name;
 	private String category;
@@ -32,12 +30,12 @@ public class Business implements Serializable {
 	private DailyOpeningTime sunday;
 	private DailyOpeningTime holiday;
 
-	public String getLastReviewedLabel() {
+	public String getLastReviewedLabel(String format) {
 		if (lastModified == null) {
 			return null;
 		}
-		String agoLabel = new PrettyTime(new Locale("nl")).format(lastModified);
-		return String.format(AGO_FORMAT, agoLabel);
+		String agoLabel = new PrettyTime(Locale.getDefault()).format(lastModified);
+		return String.format(format, agoLabel);
 	}
 	
 	public boolean isAdvertised() {

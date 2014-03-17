@@ -18,7 +18,7 @@
     <string name="opening_hours">Heures d\'ouverture</string>
     <string name="tel_prefix">T. %1$s</string>
     <string name="fax_prefix">F. %1$s</string>
-    
+    <string name="last_verified_format">Dernière vérification %1$s</string>
     <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
     <string name="wednesday">Mercredi</string>
