@@ -6,8 +6,6 @@
     <string name="what">Commerce</string>
     <string name="where">Commune / Code postal</string>
     <string name="search">Trouver</string>
-    <string name="open">Ouvert</string>
-    <string name="closed">Fermé</string>
     <string name="loading">Charger…</string>
     <string name="retrieving_results">Trouver des commerces…</string>
     <string name="retrieving_details">Télécharger les détails du commerce…</string>
