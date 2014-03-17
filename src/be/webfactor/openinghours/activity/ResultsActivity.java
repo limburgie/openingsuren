@@ -26,7 +26,6 @@ import be.webfactor.openinghours.service.ErrorHandlerFactory;
 public class ResultsActivity extends Activity {
 
 	private static final int MAX_RESULTS = 300;
-	private static final int RESULTS_PER_PAGE = 10;
 	
 	private BusinessSearchResult searchResult;
 	
@@ -51,9 +50,7 @@ public class ResultsActivity extends Activity {
 		
 		int resultCount = searchResult.getResultCount();
 		if (resultCount == MAX_RESULTS) {
-			message.setText(getResources().getString(R.string.more_then_300_results_found_showing_first_ten));
-		} else if (resultCount > RESULTS_PER_PAGE) {
-			message.setText(getResources().getString(R.string.x_results_found_showing_first_ten, resultCount));
+			message.setText(getResources().getString(R.string.more_than_300_results_found));
 		} else {
 			message.setText(getResources().getString(R.string.x_results_found, resultCount));
 		}
