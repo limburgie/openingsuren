@@ -6,8 +6,6 @@
     <string name="what">Winkel</string>
     <string name="where">Gemeente / Postcode</string>
     <string name="search">Zoeken</string>
-    <string name="open">Open</string>
-    <string name="closed">Gesloten</string>
     <string name="loading">Laden…</string>
     <string name="retrieving_results">Winkels aan het zoeken…</string>
     <string name="retrieving_details">Winkelgegevens aan het ophalen…</string>

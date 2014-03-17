@@ -2,7 +2,9 @@ package be.webfactor.openinghours.adapter;
 
 import java.util.List;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,21 @@ public class BusinessAdapter extends ArrayAdapter<Business> {
 		city.setText(current.getCity());
 		
 		return rowView;
+	}
+	
+	@TargetApi(11)
+	public void setData(List<Business> businesses) {
+	    clear();
+	    if (businesses != null) {
+	        //If the platform supports it, use addAll, otherwise add in loop
+	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+	            addAll(businesses);
+	        } else {
+	            for(Business business: businesses) {
+	                add(business);
+	            }
+	        }
+	    }
 	}
 
 }
