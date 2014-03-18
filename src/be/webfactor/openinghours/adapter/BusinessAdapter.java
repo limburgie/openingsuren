@@ -18,13 +18,13 @@ public class BusinessAdapter extends ArrayAdapter<Business> {
 	public BusinessAdapter(Context context, List<Business> values) {
 		super(context, R.layout.result_row, values);
 	}
-	
+
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.result_row, parent, false);
-		
+
 		Business current = getItem(position);
-		
+
 		TextView openIcon = (TextView) rowView.findViewById(R.id.openIcon);
 		TextView closedIcon = (TextView) rowView.findViewById(R.id.closedIcon);
 		if (current.isOpen()) {
@@ -32,32 +32,30 @@ public class BusinessAdapter extends ArrayAdapter<Business> {
 		} else {
 			openIcon.setVisibility(View.GONE);
 		}
-		
+
 		TextView name = (TextView) rowView.findViewById(R.id.name);
 		name.setText(current.getName());
-		
+
 		TextView category = (TextView) rowView.findViewById(R.id.category);
 		category.setText(current.getCategory());
-		
+
 		TextView city = (TextView) rowView.findViewById(R.id.city);
 		city.setText(current.getCity());
-		
+
 		return rowView;
 	}
-	
+
 	@TargetApi(11)
-	public void setData(List<Business> businesses) {
-	    clear();
-	    if (businesses != null) {
-	        //If the platform supports it, use addAll, otherwise add in loop
-	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-	            addAll(businesses);
-	        } else {
-	            for(Business business: businesses) {
-	                add(business);
-	            }
-	        }
-	    }
+	public void addBusinesses(List<Business> businesses) {
+		if (businesses != null) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+				addAll(businesses);
+			} else {
+				for (Business business : businesses) {
+					add(business);
+				}
+			}
+		}
 	}
 
 }
