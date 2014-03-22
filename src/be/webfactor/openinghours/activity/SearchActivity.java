@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import be.webfactor.openinghours.R;
@@ -61,24 +60,13 @@ public class SearchActivity extends Activity {
 	
 	private class FetchResultsTask extends AsyncTask<BusinessSearchQuery, Void, BusinessSearchResult> {
 		protected BusinessSearchResult doInBackground(BusinessSearchQuery... params) {
-			try {
-				return BusinessSearchServiceFactory.getInstance().findBusinesses(params[0]);
-			} catch (Throwable t) {
-				Log.e(getClass().getName(), "Error while retrieving results", t);
-				return null;
-			}
+			return BusinessSearchServiceFactory.getInstance().findBusinesses(params[0]);
 		}
 		
 		protected void onPostExecute(BusinessSearchResult result) {
 			ErrorHandler handler = ErrorHandlerFactory.forContext(getBaseContext());
 			
-			if (result == null) {
-				handler.error(R.string.unexpected_error);
-				pd.dismiss();
-				return;
-			}
-			
-			if (result.getResultCount() == 0) {
+			if (result == null || result.getResultCount() == 0) {
 				handler.error(R.string.no_results_found);
 				pd.dismiss();
 				return;
