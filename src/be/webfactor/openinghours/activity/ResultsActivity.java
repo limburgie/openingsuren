@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -21,7 +20,6 @@ import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
 import be.webfactor.openinghours.service.AdFactory;
 import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
-import be.webfactor.openinghours.service.ErrorHandlerFactory;
 
 public class ResultsActivity extends Activity {
 
@@ -103,21 +101,10 @@ public class ResultsActivity extends Activity {
 	
 	private class FetchDetailTask extends AsyncTask<Business, Void, Business> {
 		protected Business doInBackground(Business... params) {
-			try {
-				return BusinessSearchServiceFactory.getInstance().getDetail(params[0]);
-			} catch (Throwable t) {
-				Log.e(getClass().getName(), "Error while retrieving details", t);
-				return null;
-			}
+			return BusinessSearchServiceFactory.getInstance().getDetail(params[0]);
 		}
 
 		protected void onPostExecute(Business business) {
-			if (business == null) {
-				ErrorHandlerFactory.forContext(getBaseContext()).error(R.string.unexpected_error);
-				pd.dismiss();
-				return;
-			}
-			
 			Intent i = new Intent(getApplicationContext(), DetailActivity.class);
 			i.putExtra(Business.class.getName(), business);
 			startActivity(i);
