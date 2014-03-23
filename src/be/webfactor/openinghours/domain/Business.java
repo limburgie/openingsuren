@@ -34,8 +34,15 @@ public class Business implements Serializable {
 		if (lastModified == null) {
 			return null;
 		}
-		String agoLabel = new PrettyTime(Locale.getDefault()).format(lastModified);
+		String agoLabel = new PrettyTime(getLocale()).format(lastModified);
 		return String.format(format, agoLabel);
+	}
+
+	private Locale getLocale() {
+		if(Locale.getDefault().getLanguage().equals("fr")) {
+			return Locale.getDefault();
+		}
+		return new Locale("nl");
 	}
 	
 	public boolean isAdvertised() {
