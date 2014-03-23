@@ -28,6 +28,13 @@ public class SearchActivity extends Activity {
 		buildLayout();
 		new AdFactory(this).setup();
 	}
+	
+	protected void onDestroy() {
+		super.onDestroy();
+		if (pd != null) {
+			pd.dismiss();
+		}
+	}
 
 	private void buildLayout() {
 		setContentView(R.layout.activity_search);
