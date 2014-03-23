@@ -20,6 +20,8 @@ import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.domain.BusinessSearchResult;
 import be.webfactor.openinghours.service.AdFactory;
 import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
+import be.webfactor.openinghours.service.ErrorHandlerFactory;
+import be.webfactor.openinghours.service.impl.IPBlockedException;
 
 public class ResultsActivity extends Activity {
 
@@ -41,6 +43,13 @@ public class ResultsActivity extends Activity {
 		buildLayout();
 		new AdFactory(this).setup();
 		populateResultList();
+	}
+	
+	protected void onDestroy() {
+		super.onDestroy();
+		if (pd != null) {
+			pd.dismiss();
+		}
 	}
 
 	private void populateResultList() {
@@ -101,14 +110,23 @@ public class ResultsActivity extends Activity {
 	
 	private class FetchDetailTask extends AsyncTask<Business, Void, Business> {
 		protected Business doInBackground(Business... params) {
-			return BusinessSearchServiceFactory.getInstance().getDetail(params[0]);
+			try {
+				return BusinessSearchServiceFactory.getInstance().getDetail(params[0]);
+			} catch (IPBlockedException e) {
+				return null;
+			}
 		}
 
 		protected void onPostExecute(Business business) {
+			if (business == null) {
+				ErrorHandlerFactory.forContext(getBaseContext()).error(R.string.max_retrievals_reached);
+				pd.dismiss();
+				return;
+			}
+			
 			Intent i = new Intent(getApplicationContext(), DetailActivity.class);
 			i.putExtra(Business.class.getName(), business);
 			startActivity(i);
-			
 			pd.dismiss();
 		}
 	}

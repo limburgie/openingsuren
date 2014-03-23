@@ -13,6 +13,7 @@
     <string name="more_than_300_results_found">Trouvé plus de 300 commerces.</string>
     <string name="no_results_found">Trouvé rien. Elargissez votre récherche.</string>
     <string name="unexpected_error">Une erreur inattendue s\'est produite.</string>
+    <string name="max_retrievals_reached">Le nombre maximum de recherches quotidiennes a été atteint. Veuillez essayer à nouveau demain.</string>
     <string name="opening_hours">Heures d\'ouverture</string>
     <string name="tel_prefix">T. %1$s</string>
     <string name="fax_prefix">F. %1$s</string>

@@ -13,6 +13,7 @@
     <string name="more_than_300_results_found">Meer dan 300 winkels gevonden.</string>
     <string name="no_results_found">Geen winkels gevonden. Verbreed je zoekopdracht.</string>
     <string name="unexpected_error">Een onverwachte fout is opgetreden.</string>
+    <string name="max_retrievals_reached">Het maximum aantal dagelijkse zoekopdrachten is bereikt. Probeer morgen opnieuw.</string>
     <string name="opening_hours">Openingsuren</string>
     <string name="tel_prefix">T. %1$s</string>
     <string name="fax_prefix">F. %1$s</string>
