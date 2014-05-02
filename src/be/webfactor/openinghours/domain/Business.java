@@ -15,7 +15,6 @@ public class Business implements Serializable {
 	private String city;
 	private String province;
 	private String phone;
-	private String fax;
 	private String extraInfo;
 	private Date lastModified;
 	private boolean open;
@@ -99,14 +98,6 @@ public class Business implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public String getFax() {
-		return fax;
-	}
-
-	public void setFax(String fax) {
-		this.fax = fax;
 	}
 
 	public String getExtraInfo() {

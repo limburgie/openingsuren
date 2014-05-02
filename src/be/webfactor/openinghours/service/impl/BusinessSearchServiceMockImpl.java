@@ -64,7 +64,6 @@ public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 		business.setSunday(new DailyOpeningTime("8:00 - 11:00", "15:00 - 18:00"));
 		business.setHoliday(new DailyOpeningTime("9:00 - 11:00", null));
 		business.setPhone("123 456 789");
-		business.setFax("987 654 321");
 		int random = new Random().nextInt(365*2);
 		business.setLastModified(new Date(System.currentTimeMillis() - 1000*60*60*24*(50+random)));
 		return business;

@@ -20,7 +20,6 @@ public class DetailActivity extends Activity {
 	private TextView street;
 	private TextView city;
 	private TextView phone;
-	private TextView fax;
 	private TextView mondayAm;
 	private TextView mondayPm;
 	private TextView tuesdayAm;
@@ -55,7 +54,6 @@ public class DetailActivity extends Activity {
 		street = (TextView) findViewById(R.id.street);
 		city = (TextView) findViewById(R.id.city);
 		phone = (TextView) findViewById(R.id.phone);
-		fax = (TextView) findViewById(R.id.fax);
 		mondayAm = (TextView) findViewById(R.id.monday_am);
 		mondayPm = (TextView) findViewById(R.id.monday_pm);
 		tuesdayAm = (TextView) findViewById(R.id.tuesday_am);
@@ -88,11 +86,6 @@ public class DetailActivity extends Activity {
 			phone.setVisibility(View.GONE);
 		} else {
 			phone.setText(getResources().getString(R.string.tel_prefix, business.getPhone()));
-		}
-		if (business.getFax() == null) {
-			fax.setVisibility(View.GONE);
-		} else {
-			fax.setText(getResources().getString(R.string.fax_prefix, business.getFax()));
 		}
 		mondayAm.setText(business.getMonday().getAm());
 		mondayPm.setText(business.getMonday().getPm());

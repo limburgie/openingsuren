@@ -71,12 +71,6 @@
                     android:onClick="callPhoneNumber" />
 
                 <TextView
-                    android:id="@+id/fax"
-                    style="@style/listDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
                     style="@style/listSubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

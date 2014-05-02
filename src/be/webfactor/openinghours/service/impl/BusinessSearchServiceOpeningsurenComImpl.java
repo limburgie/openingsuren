@@ -123,11 +123,6 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		if (row.text().contains(labels.getPhoneLabel())) {
 			result.setPhone(row.text().replace(labels.getPhoneLabel(), ""));
 		}
-		// fax
-		row = row.nextElementSibling();
-		if (row.text().contains(labels.getFaxLabel())) {
-			result.setFax(row.text().replace(labels.getFaxLabel(), ""));
-		}
 
 		result.setMonday(getOpeningTime(context, labels.getMondayLabel()));
 		result.setTuesday(getOpeningTime(context, labels.getTuesdayLabel()));
