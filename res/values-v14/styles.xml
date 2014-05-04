@@ -9,4 +9,65 @@
         <!-- API 14 theme customizations can go here. -->
     </style>
 
+    <style name="Theme.Openingsuren" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_openingsuren</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Openingsuren</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Openingsuren</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Openingsuren</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Openingsuren</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Openingsuren</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_openingsuren</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_openingsuren</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Openingsuren</item>
+    </style>
+
+    <style name="ActionBar.Solid.Openingsuren" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_openingsuren</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_openingsuren</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_openingsuren</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Openingsuren</item>
+        <item name="android:titleTextStyle">@style/ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/darker</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Openingsuren" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_openingsuren</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Openingsuren</item>
+    </style>
+
+    <style name="PopupMenu.Openingsuren" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_openingsuren</item>
+    </style>
+
+    <style name="DropDownListView.Openingsuren" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_openingsuren</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Openingsuren" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_openingsuren</item>
+    </style>
+
+    <style name="DropDownNav.Openingsuren" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_openingsuren</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_openingsuren</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_openingsuren</item>
+    </style>
+
+    <style name="ProgressBar.Openingsuren" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_openingsuren</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Openingsuren" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_openingsuren</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Openingsuren.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Openingsuren</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Openingsuren</item>
+    </style>
+
 </resources>
