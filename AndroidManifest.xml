@@ -32,7 +32,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DetailActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+                android:uiOptions="splitActionBarWhenNarrow"/>
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />

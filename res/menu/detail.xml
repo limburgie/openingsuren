@@ -3,7 +3,7 @@
     <item
         android:id="@+id/action_call"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/call"/>
-
+        android:showAsAction="ifRoom"
+        android:title="@string/call"
+        android:icon="@drawable/ic_action_call"/>
 </menu>
