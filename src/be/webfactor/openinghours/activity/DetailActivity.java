@@ -72,6 +72,12 @@ public class DetailActivity extends Activity {
 		startActivity(intent);
 	}
 
+	private void openGoogleMaps() {
+		String uri = String.format("geo:0,0,q=", business.getAddress());
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+		startActivity(intent);
+	}
+
 	private void buildLayout() {
 		setContentView(R.layout.activity_detail);
 
