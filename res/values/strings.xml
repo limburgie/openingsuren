@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Openingsuren BE</string>
+    <string name="call">Bellen</string>
     <string name="action_settings">Instellingen</string>
     <string name="what">Winkel</string>
     <string name="where">Gemeente / Postcode</string>

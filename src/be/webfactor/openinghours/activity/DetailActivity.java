@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import be.webfactor.openinghours.R;
@@ -19,7 +22,6 @@ public class DetailActivity extends Activity {
 	private TextView category;
 	private TextView street;
 	private TextView city;
-	private TextView phone;
 	private TextView mondayAm;
 	private TextView mondayPm;
 	private TextView tuesdayAm;
@@ -45,6 +47,31 @@ public class DetailActivity extends Activity {
 		new AdFactory(this).setup();
 	}
 
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.detail, menu);
+		if (business.getPhone() == null) {
+			menu.removeItem(R.id.action_call);
+		}
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_call:
+				callPhoneNumber();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void callPhoneNumber() {
+		Intent intent = new Intent(Intent.ACTION_CALL);
+		intent.setData(Uri.parse("tel:" + business.getPhone()));
+		startActivity(intent);
+	}
+
 	private void buildLayout() {
 		setContentView(R.layout.activity_detail);
 
@@ -53,7 +80,6 @@ public class DetailActivity extends Activity {
 		category = (TextView) findViewById(R.id.category);
 		street = (TextView) findViewById(R.id.street);
 		city = (TextView) findViewById(R.id.city);
-		phone = (TextView) findViewById(R.id.phone);
 		mondayAm = (TextView) findViewById(R.id.monday_am);
 		mondayPm = (TextView) findViewById(R.id.monday_pm);
 		tuesdayAm = (TextView) findViewById(R.id.tuesday_am);
@@ -82,11 +108,6 @@ public class DetailActivity extends Activity {
 		category.setText(business.getCategory());
 		street.setText(business.getStreet());
 		city.setText(business.getCity());
-		if (business.getPhone() == null) {
-			phone.setVisibility(View.GONE);
-		} else {
-			phone.setText(getResources().getString(R.string.tel_prefix, business.getPhone()));
-		}
 		mondayAm.setText(business.getMonday().getAm());
 		mondayPm.setText(business.getMonday().getPm());
 		tuesdayAm.setText(business.getTuesday().getAm());
@@ -103,12 +124,6 @@ public class DetailActivity extends Activity {
 		sundayPm.setText(business.getSunday().getPm());
 		holidayAm.setText(business.getHoliday().getAm());
 		holidayPm.setText(business.getHoliday().getPm());
-	}
-
-	public void callPhoneNumber(View view) {
-		Intent intent = new Intent(Intent.ACTION_CALL);
-		intent.setData(Uri.parse("tel:" + business.getPhone()));
-		startActivity(intent);
 	}
 
 }
