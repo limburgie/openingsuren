@@ -8,7 +8,6 @@ import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.domain.Business;
@@ -21,7 +20,6 @@ public class DetailActivity extends Activity {
 
 	private Business business;
 
-	private TextView message;
 	private TextView name;
 	private TextView category;
 	private TextView street;
@@ -105,7 +103,6 @@ public class DetailActivity extends Activity {
 	private void buildLayout() {
 		setContentView(R.layout.activity_detail);
 
-		message = (TextView) findViewById(R.id.message);
 		name = (TextView) findViewById(R.id.name);
 		category = (TextView) findViewById(R.id.category);
 		street = (TextView) findViewById(R.id.street);
@@ -129,11 +126,6 @@ public class DetailActivity extends Activity {
 
 		String lastVerifiedFormat = getResources().getString(R.string.last_verified_format);
 		String lastReviewedLabel = business.getLastReviewedLabel(lastVerifiedFormat);
-		if (lastReviewedLabel == null) {
-			message.setVisibility(View.GONE);
-		} else {
-			message.setText(lastReviewedLabel);
-		}
 		name.setText(business.getName());
 		category.setText(business.getCategory());
 		street.setText(business.getStreet());
