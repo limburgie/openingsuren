@@ -31,6 +31,7 @@
 
     <style name="ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">@color/darker</item>
+		<item name="android:textStyle">bold</item>
     </style>
 
     <style name="ActionBar.Transparent.Openingsuren" parent="@android:style/Widget.Holo.Light.ActionBar">
