@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -55,6 +56,7 @@ public class DetailActivity extends Activity {
 		inflater.inflate(R.menu.detail, menu);
 		if (business.getPhone() == null) {
 			menu.removeItem(R.id.action_call);
+			menu.removeItem(R.id.action_add_to_contacts);
 		}
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -63,6 +65,9 @@ public class DetailActivity extends Activity {
 		switch (item.getItemId()) {
 			case R.id.action_call:
 				callPhoneNumber();
+				return true;
+			case R.id.action_add_to_contacts:
+				addToContacts();
 				return true;
 			case R.id.action_navigate:
 				openGoogleMaps();
@@ -76,6 +81,15 @@ public class DetailActivity extends Activity {
 		Intent intent = new Intent(Intent.ACTION_CALL);
 		intent.setData(Uri.parse("tel:" + business.getPhone()));
 		startActivity(intent);
+	}
+
+	private void addToContacts() {
+		Intent i = new Intent(ContactsContract.Intents.Insert.ACTION);
+		i.setData(ContactsContract.Contacts.CONTENT_URI);
+		i.putExtra(ContactsContract.Intents.Insert.NAME, business.getName());
+		i.putExtra(ContactsContract.Intents.Insert.PHONE, business.getPhone());
+		i.putExtra(ContactsContract.Intents.Insert.POSTAL, business.getAddress());
+		startActivity(i);
 	}
 
 	private void openGoogleMaps() {

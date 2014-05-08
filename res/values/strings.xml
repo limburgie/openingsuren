@@ -28,5 +28,6 @@
     <string name="sunday">Zondag</string>
     <string name="holiday">Feestdagen</string>
 	<string name="navigate">Navigeren</string>
+	<string name="add_to_contacts">Contactpersoon toevoegen</string>
 
 </resources>

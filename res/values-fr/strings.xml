@@ -28,5 +28,6 @@
     <string name="sunday">Dimanche</string>
     <string name="holiday">Jour férié</string>
 	<string name="navigate">Naviguer</string>
+	<string name="add_to_contacts">Ajouter contact</string>
 
 </resources>
