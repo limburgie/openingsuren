@@ -13,7 +13,6 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.adapter.BusinessAdapter;
 import be.webfactor.openinghours.domain.Business;
@@ -31,8 +30,7 @@ public class ResultsActivity extends Activity {
 	
 	private ProgressDialog pd;
 	private ListView resultList;
-	private TextView message;
-	
+
 	private int visibleThreshold = 5;
     private int previousTotal = 0;
     private boolean loading = true;
@@ -57,9 +55,9 @@ public class ResultsActivity extends Activity {
 		
 		int resultCount = searchResult.getResultCount();
 		if (resultCount == MAX_RESULTS) {
-			message.setText(getResources().getString(R.string.more_than_300_results_found));
+			ErrorHandlerFactory.forContext(getApplicationContext()).error(R.string.more_than_300_results_found);
 		} else {
-			message.setText(getResources().getString(R.string.x_results_found, resultCount));
+			ErrorHandlerFactory.forContext(getApplicationContext()).error(R.string.x_results_found, resultCount);
 		}
 
 		BusinessAdapter adapter = new BusinessAdapter(getApplicationContext(), searchResult.getPageResults());
@@ -93,7 +91,6 @@ public class ResultsActivity extends Activity {
 		        }
 			}
 		});
-		message = (TextView) findViewById(R.id.message);
 	}
 	
 	@SuppressLint("InlinedApi")
