@@ -43,6 +43,10 @@ public class Business implements Serializable {
 		}
 		return new Locale("nl");
 	}
+
+	public String getAddress() {
+		return String.format("%s,%s", street, city);
+	}
 	
 	public boolean isAdvertised() {
 		return advertised;

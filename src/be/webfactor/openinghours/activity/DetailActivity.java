@@ -13,6 +13,9 @@ import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.service.AdFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class DetailActivity extends Activity {
 
 	private Business business;
@@ -61,6 +64,9 @@ public class DetailActivity extends Activity {
 			case R.id.action_call:
 				callPhoneNumber();
 				return true;
+			case R.id.action_navigate:
+				openGoogleMaps();
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -70,6 +76,16 @@ public class DetailActivity extends Activity {
 		Intent intent = new Intent(Intent.ACTION_CALL);
 		intent.setData(Uri.parse("tel:" + business.getPhone()));
 		startActivity(intent);
+	}
+
+	private void openGoogleMaps() {
+		try {
+			String uri = String.format("geo:0,0?q=%s", URLEncoder.encode(business.getAddress(), "UTF-8"));
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+			startActivity(intent);
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	private void buildLayout() {

@@ -27,5 +27,6 @@
     <string name="saturday">Samedi</string>
     <string name="sunday">Dimanche</string>
     <string name="holiday">Jour férié</string>
+	<string name="navigate">Naviguer</string>
 
 </resources>
