@@ -4,23 +4,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
+import android.provider.ContactsContract;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import be.webfactor.openinghours.R;
 import be.webfactor.openinghours.domain.Business;
 import be.webfactor.openinghours.service.AdFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class DetailActivity extends Activity {
 
 	private Business business;
 
-	private TextView message;
 	private TextView name;
 	private TextView category;
 	private TextView street;
 	private TextView city;
-	private TextView phone;
-	private TextView fax;
 	private TextView mondayAm;
 	private TextView mondayPm;
 	private TextView tuesdayAm;
@@ -46,16 +49,64 @@ public class DetailActivity extends Activity {
 		new AdFactory(this).setup();
 	}
 
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.detail, menu);
+		if (business.getPhone() == null) {
+			menu.removeItem(R.id.action_call);
+			menu.removeItem(R.id.action_add_to_contacts);
+		}
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_call:
+				callPhoneNumber();
+				return true;
+			case R.id.action_add_to_contacts:
+				addToContacts();
+				return true;
+			case R.id.action_navigate:
+				openGoogleMaps();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void callPhoneNumber() {
+		Intent intent = new Intent(Intent.ACTION_CALL);
+		intent.setData(Uri.parse("tel:" + business.getPhone()));
+		startActivity(intent);
+	}
+
+	private void addToContacts() {
+		Intent i = new Intent(ContactsContract.Intents.Insert.ACTION);
+		i.setData(ContactsContract.Contacts.CONTENT_URI);
+		i.putExtra(ContactsContract.Intents.Insert.NAME, business.getName());
+		i.putExtra(ContactsContract.Intents.Insert.PHONE, business.getPhone());
+		i.putExtra(ContactsContract.Intents.Insert.POSTAL, business.getAddress());
+		startActivity(i);
+	}
+
+	private void openGoogleMaps() {
+		try {
+			String uri = String.format("geo:0,0?q=%s", URLEncoder.encode(business.getAddress(), "UTF-8"));
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+			startActivity(intent);
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	private void buildLayout() {
 		setContentView(R.layout.activity_detail);
 
-		message = (TextView) findViewById(R.id.message);
 		name = (TextView) findViewById(R.id.name);
 		category = (TextView) findViewById(R.id.category);
 		street = (TextView) findViewById(R.id.street);
 		city = (TextView) findViewById(R.id.city);
-		phone = (TextView) findViewById(R.id.phone);
-		fax = (TextView) findViewById(R.id.fax);
 		mondayAm = (TextView) findViewById(R.id.monday_am);
 		mondayPm = (TextView) findViewById(R.id.monday_pm);
 		tuesdayAm = (TextView) findViewById(R.id.tuesday_am);
@@ -75,25 +126,10 @@ public class DetailActivity extends Activity {
 
 		String lastVerifiedFormat = getResources().getString(R.string.last_verified_format);
 		String lastReviewedLabel = business.getLastReviewedLabel(lastVerifiedFormat);
-		if (lastReviewedLabel == null) {
-			message.setVisibility(View.GONE);
-		} else {
-			message.setText(lastReviewedLabel);
-		}
 		name.setText(business.getName());
 		category.setText(business.getCategory());
 		street.setText(business.getStreet());
 		city.setText(business.getCity());
-		if (business.getPhone() == null) {
-			phone.setVisibility(View.GONE);
-		} else {
-			phone.setText(getResources().getString(R.string.tel_prefix, business.getPhone()));
-		}
-		if (business.getFax() == null) {
-			fax.setVisibility(View.GONE);
-		} else {
-			fax.setText(getResources().getString(R.string.fax_prefix, business.getFax()));
-		}
 		mondayAm.setText(business.getMonday().getAm());
 		mondayPm.setText(business.getMonday().getPm());
 		tuesdayAm.setText(business.getTuesday().getAm());
@@ -110,12 +146,6 @@ public class DetailActivity extends Activity {
 		sundayPm.setText(business.getSunday().getPm());
 		holidayAm.setText(business.getHoliday().getAm());
 		holidayPm.setText(business.getHoliday().getPm());
-	}
-
-	public void callPhoneNumber(View view) {
-		Intent intent = new Intent(Intent.ACTION_CALL);
-		intent.setData(Uri.parse("tel:" + business.getPhone()));
-		startActivity(intent);
 	}
 
 }

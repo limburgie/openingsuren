@@ -12,8 +12,8 @@ public class ErrorHandlerToastImpl implements ErrorHandler {
 		this.context = context;
 	}
 	
-	public void error(int message) {
-		Toast.makeText(context, context.getResources().getString(message), Toast.LENGTH_LONG).show();
+	public void error(int message, Object... params) {
+		Toast.makeText(context, context.getResources().getString(message, params), Toast.LENGTH_LONG).show();
 	}
 
 }
