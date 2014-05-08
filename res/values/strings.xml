@@ -27,5 +27,6 @@
     <string name="saturday">Zaterdag</string>
     <string name="sunday">Zondag</string>
     <string name="holiday">Feestdagen</string>
+	<string name="navigate">Navigeren</string>
 
 </resources>

@@ -2,8 +2,13 @@
 
     <item
         android:id="@+id/action_call"
-        android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="@string/call"
         android:icon="@drawable/ic_action_call"/>
+
+	<item
+		android:id="@+id/action_navigate"
+		android:showAsAction="ifRoom"
+		android:title="@string/navigate"
+		android:icon="@drawable/ic_action_place"/>
 </menu>
