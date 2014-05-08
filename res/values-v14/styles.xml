@@ -30,7 +30,7 @@
     </style>
 
     <style name="ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/darker</item>
+        <item name="android:textColor">@color/dark_gray</item>
 		<item name="android:textStyle">bold</item>
     </style>
 
