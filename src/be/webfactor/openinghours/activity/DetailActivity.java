@@ -40,6 +40,7 @@ public class DetailActivity extends Activity {
 	private TextView sundayPm;
 	private TextView holidayAm;
 	private TextView holidayPm;
+	private TextView lastUpdated;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -123,9 +124,8 @@ public class DetailActivity extends Activity {
 		sundayPm = (TextView) findViewById(R.id.sunday_pm);
 		holidayAm = (TextView) findViewById(R.id.holiday_am);
 		holidayPm = (TextView) findViewById(R.id.holiday_pm);
+		lastUpdated = (TextView) findViewById(R.id.last_updated);
 
-		String lastVerifiedFormat = getResources().getString(R.string.last_verified_format);
-		String lastReviewedLabel = business.getLastReviewedLabel(lastVerifiedFormat);
 		name.setText(business.getName());
 		category.setText(business.getCategory());
 		street.setText(business.getStreet());
@@ -146,6 +146,13 @@ public class DetailActivity extends Activity {
 		sundayPm.setText(business.getSunday().getPm());
 		holidayAm.setText(business.getHoliday().getAm());
 		holidayPm.setText(business.getHoliday().getPm());
+		lastUpdated.setText(getLastReviewed());
+	}
+
+	private String getLastReviewed() {
+		String lastUpdateAgo = business.getLastReviewedLabel();
+		String lastUpdate = getResources().getString(R.string.last_update);
+		return String.format("%s: %s", lastUpdate, lastUpdateAgo);
 	}
 
 }

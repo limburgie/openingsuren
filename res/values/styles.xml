@@ -87,4 +87,9 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+	<style name="muted">
+		<item name="android:textColor">@color/base</item>
+		<item name="android:paddingTop">10dp</item>
+	</style>
 </resources>
