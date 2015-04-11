@@ -2,14 +2,14 @@ package be.webfactor.openinghours.service.impl;
 
 public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 
-	private static final String LAST_REVIEWED_LABEL = "Dernier contr™le des heures d'ouverture le ";
+	private static final String LAST_REVIEWED_LABEL = "Dernier contrôle des heures d'ouverture le";
 
 	public String getTooManyResultsLabel() {
-		return "Seuls les 300 premiers rŽsultats de la recherche sont affichŽs.";
+		return "Seuls les 300 premiers résultats de la recherche sont affichés.";
 	}
 
 	public String getIpBlockedLabel() {
-		return "Vous n'est pas autorisŽ a accŽder au contenu de cette page";
+		return "Vous n'est pas autorisé a accéder au contenu de cette page";
 	}
 
 	public String getBaseUrl() {
@@ -17,15 +17,15 @@ public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 	}
 
 	public String getNoResultsFoundLabel() {
-		return "Malhereusement les heures d'ouvertures demandŽs ne sont pas disponibles.";
+		return "Malhereusement les heures d'ouvertures demandés ne sont pas disponibles.";
 	}
 
 	public String getPhoneLabel() {
-		return "TŽlŽphone";
+		return "Téléphone";
 	}
 
 	public String getFaxLabel() {
-		return "TŽlŽfax";
+		return "Téléfax";
 	}
 
 	public boolean hasProvinceInfo() {
@@ -65,7 +65,7 @@ public class FrenchTranslatedLabelInfo implements TranslatedLabelInfo {
 	}
 
 	public String getHolidayLabel() {
-		return "Jour FŽriŽ";
+		return "Jour Férié";
 	}
 
 	public String getLastReviewedLabel() {
