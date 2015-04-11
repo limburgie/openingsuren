@@ -71,7 +71,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/monday"/>
 
 					<TextView
@@ -79,14 +79,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/monday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -99,7 +99,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/tuesday"/>
 
 					<TextView
@@ -107,14 +107,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/tuesday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -127,7 +127,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/wednesday"/>
 
 					<TextView
@@ -135,14 +135,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/wednesday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -155,7 +155,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/thursday"/>
 
 					<TextView
@@ -163,14 +163,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/thursday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -183,7 +183,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/friday"/>
 
 					<TextView
@@ -191,14 +191,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/friday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -211,7 +211,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/saturday"/>
 
 					<TextView
@@ -219,14 +219,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/saturday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -239,7 +239,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/sunday"/>
 
 					<TextView
@@ -247,14 +247,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/sunday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -267,7 +267,7 @@
 							style="@style/tableHeader"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.35"
+							android:layout_weight="0.3"
 							android:text="@string/holiday"/>
 
 					<TextView
@@ -275,14 +275,14 @@
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 
 					<TextView
 							android:id="@+id/holiday_pm"
 							style="@style/listDetail"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
-							android:layout_weight="0.325"/>
+							android:layout_weight="0.35"/>
 				</LinearLayout>
 
 				<TextView
