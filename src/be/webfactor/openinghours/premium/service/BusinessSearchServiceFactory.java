@@ -1,6 +1,6 @@
-package be.webfactor.openinghours.service;
+package be.webfactor.openinghours.premium.service;
 
-import be.webfactor.openinghours.service.impl.BusinessSearchServiceOpeningsurenComImpl;
+import be.webfactor.openinghours.premium.service.impl.BusinessSearchServiceOpeningsurenComImpl;
 
 public class BusinessSearchServiceFactory {
 

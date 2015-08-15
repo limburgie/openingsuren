@@ -1,14 +1,14 @@
-package be.webfactor.openinghours.service.impl;
+package be.webfactor.openinghours.premium.service.impl;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
-import be.webfactor.openinghours.domain.Business;
-import be.webfactor.openinghours.domain.BusinessSearchQuery;
-import be.webfactor.openinghours.domain.BusinessSearchResult;
-import be.webfactor.openinghours.domain.DailyOpeningTime;
-import be.webfactor.openinghours.service.BusinessSearchService;
+import be.webfactor.openinghours.premium.domain.Business;
+import be.webfactor.openinghours.premium.domain.BusinessSearchQuery;
+import be.webfactor.openinghours.premium.domain.BusinessSearchResult;
+import be.webfactor.openinghours.premium.domain.DailyOpeningTime;
+import be.webfactor.openinghours.premium.service.BusinessSearchService;
 
 public class BusinessSearchServiceMockImpl implements BusinessSearchService {
 

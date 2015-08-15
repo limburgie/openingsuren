@@ -1,4 +1,4 @@
-package be.webfactor.openinghours.service;
+package be.webfactor.openinghours.premium.service;
 
 public class ConnectionException extends RuntimeException {
 

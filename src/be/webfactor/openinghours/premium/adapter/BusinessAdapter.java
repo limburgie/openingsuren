@@ -1,6 +1,4 @@
-package be.webfactor.openinghours.adapter;
-
-import java.util.List;
+package be.webfactor.openinghours.premium.adapter;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -10,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import be.webfactor.openinghours.R;
-import be.webfactor.openinghours.domain.Business;
+import be.webfactor.openinghours.premium.R;
+import be.webfactor.openinghours.premium.domain.Business;
+
+import java.util.List;
 
 public class BusinessAdapter extends ArrayAdapter<Business> {
 

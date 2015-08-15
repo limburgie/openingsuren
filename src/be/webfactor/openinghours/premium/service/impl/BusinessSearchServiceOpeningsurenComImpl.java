@@ -1,4 +1,4 @@
-package be.webfactor.openinghours.service.impl;
+package be.webfactor.openinghours.premium.service.impl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,12 +14,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import be.webfactor.openinghours.domain.Business;
-import be.webfactor.openinghours.domain.BusinessSearchQuery;
-import be.webfactor.openinghours.domain.BusinessSearchResult;
-import be.webfactor.openinghours.domain.DailyOpeningTime;
-import be.webfactor.openinghours.service.BusinessSearchService;
-import be.webfactor.openinghours.service.ConnectionException;
+import be.webfactor.openinghours.premium.domain.Business;
+import be.webfactor.openinghours.premium.domain.BusinessSearchQuery;
+import be.webfactor.openinghours.premium.domain.BusinessSearchResult;
+import be.webfactor.openinghours.premium.domain.DailyOpeningTime;
+import be.webfactor.openinghours.premium.service.BusinessSearchService;
+import be.webfactor.openinghours.premium.service.ConnectionException;
 
 public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchService {
 

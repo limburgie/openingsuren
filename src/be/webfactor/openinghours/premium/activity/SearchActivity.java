@@ -1,4 +1,4 @@
-package be.webfactor.openinghours.activity;
+package be.webfactor.openinghours.premium.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -9,13 +9,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import be.webfactor.openinghours.R;
-import be.webfactor.openinghours.domain.BusinessSearchQuery;
-import be.webfactor.openinghours.domain.BusinessSearchResult;
-import be.webfactor.openinghours.service.AdFactory;
-import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
-import be.webfactor.openinghours.service.ErrorHandler;
-import be.webfactor.openinghours.service.ErrorHandlerFactory;
+import be.webfactor.openinghours.premium.R;
+import be.webfactor.openinghours.premium.domain.BusinessSearchQuery;
+import be.webfactor.openinghours.premium.domain.BusinessSearchResult;
+import be.webfactor.openinghours.premium.service.BusinessSearchServiceFactory;
+import be.webfactor.openinghours.premium.service.ErrorHandler;
+import be.webfactor.openinghours.premium.service.ErrorHandlerFactory;
 
 public class SearchActivity extends Activity {
 
@@ -26,7 +25,6 @@ public class SearchActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		buildLayout();
-		new AdFactory(this).setup();
 	}
 	
 	protected void onDestroy() {

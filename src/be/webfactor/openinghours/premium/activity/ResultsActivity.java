@@ -1,4 +1,4 @@
-package be.webfactor.openinghours.activity;
+package be.webfactor.openinghours.premium.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,14 +13,13 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import be.webfactor.openinghours.R;
-import be.webfactor.openinghours.adapter.BusinessAdapter;
-import be.webfactor.openinghours.domain.Business;
-import be.webfactor.openinghours.domain.BusinessSearchResult;
-import be.webfactor.openinghours.service.AdFactory;
-import be.webfactor.openinghours.service.BusinessSearchServiceFactory;
-import be.webfactor.openinghours.service.ErrorHandlerFactory;
-import be.webfactor.openinghours.service.impl.IPBlockedException;
+import be.webfactor.openinghours.premium.R;
+import be.webfactor.openinghours.premium.adapter.BusinessAdapter;
+import be.webfactor.openinghours.premium.domain.Business;
+import be.webfactor.openinghours.premium.domain.BusinessSearchResult;
+import be.webfactor.openinghours.premium.service.BusinessSearchServiceFactory;
+import be.webfactor.openinghours.premium.service.ErrorHandlerFactory;
+import be.webfactor.openinghours.premium.service.impl.IPBlockedException;
 
 public class ResultsActivity extends Activity {
 
@@ -39,7 +38,6 @@ public class ResultsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		buildLayout();
-		new AdFactory(this).setup();
 		populateResultList();
 	}
 	

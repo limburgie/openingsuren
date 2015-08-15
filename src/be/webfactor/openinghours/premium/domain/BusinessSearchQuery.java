@@ -1,4 +1,4 @@
-package be.webfactor.openinghours.domain;
+package be.webfactor.openinghours.premium.domain;
 
 public class BusinessSearchQuery {
 

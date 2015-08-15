@@ -1,8 +1,8 @@
-package be.webfactor.openinghours.service.impl;
+package be.webfactor.openinghours.premium.service.impl;
 
 import android.content.Context;
 import android.widget.Toast;
-import be.webfactor.openinghours.service.ErrorHandler;
+import be.webfactor.openinghours.premium.service.ErrorHandler;
 
 public class ErrorHandlerToastImpl implements ErrorHandler {
 

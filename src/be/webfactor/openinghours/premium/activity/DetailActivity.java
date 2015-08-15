@@ -1,4 +1,4 @@
-package be.webfactor.openinghours.activity;
+package be.webfactor.openinghours.premium.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,9 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import be.webfactor.openinghours.R;
-import be.webfactor.openinghours.domain.Business;
-import be.webfactor.openinghours.service.AdFactory;
+import be.webfactor.openinghours.premium.R;
+import be.webfactor.openinghours.premium.domain.Business;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -47,7 +46,6 @@ public class DetailActivity extends Activity {
 
 		business = (Business) getIntent().getSerializableExtra(Business.class.getName());
 		buildLayout();
-		new AdFactory(this).setup();
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {

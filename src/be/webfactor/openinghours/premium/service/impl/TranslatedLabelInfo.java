@@ -1,4 +1,4 @@
-package be.webfactor.openinghours.service.impl;
+package be.webfactor.openinghours.premium.service.impl;
 
 public interface TranslatedLabelInfo {
 
