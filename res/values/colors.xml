@@ -6,9 +6,9 @@
     <color name="transparent">#00000000</color>
     <color name="red">#77cb011e</color>
     <color name="green">#776eba02</color>
-    <color name="darker">#8E7259</color>
-    <color name="dark">#A88E65</color>
-    <color name="base">#C3AC72</color>
-    <color name="light">#DFCA7E</color>
-    <color name="lighter">#FCEA8C</color>
+    <color name="darker">#78909C</color>
+    <color name="dark">#90A4AE</color>
+    <color name="base">#B0BEC5</color>
+    <color name="light">#CFD8DC</color>
+    <color name="lighter">#ECEFF1</color>
 </resources>
