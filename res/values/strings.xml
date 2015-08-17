@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Openingsuren BE</string>
+    <string name="app_name">Openingsuren BE+</string>
     <string name="call">Bellen</string>
     <string name="action_settings">Instellingen</string>
     <string name="what">Winkel</string>
@@ -29,4 +29,5 @@
 	<string name="navigate">Navigeren</string>
 	<string name="add_to_contacts">Contactpersoon toevoegen</string>
 	<string name="last_update">Laatste update</string>
+    <string name="check_internet_connection">Je moet met het internet verbonden zijn.</string>
 </resources>

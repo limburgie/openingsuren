@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Heures d\'Ouverture BE</string>
+    <string name="app_name">Heures d\'Ouverture BE+</string>
     <string name="call">Téléphoner</string>
     <string name="action_settings">Configuration</string>
     <string name="what">Commerce</string>
@@ -29,4 +28,5 @@
 	<string name="navigate">Naviguer</string>
 	<string name="add_to_contacts">Ajouter contact</string>
 	<string name="last_update">Dernière vérification</string>
+    <string name="check_internet_connection">Il faut être connecté à internet.</string>
 </resources>

@@ -18,6 +18,8 @@ import be.webfactor.openinghours.premium.adapter.BusinessAdapter;
 import be.webfactor.openinghours.premium.domain.Business;
 import be.webfactor.openinghours.premium.domain.BusinessSearchResult;
 import be.webfactor.openinghours.premium.service.BusinessSearchServiceFactory;
+import be.webfactor.openinghours.premium.service.ConnectionException;
+import be.webfactor.openinghours.premium.service.ErrorHandler;
 import be.webfactor.openinghours.premium.service.ErrorHandlerFactory;
 import be.webfactor.openinghours.premium.service.impl.IPBlockedException;
 
@@ -129,10 +131,21 @@ public class ResultsActivity extends Activity {
 	private class FetchMoreResultsTask extends AsyncTask<BusinessSearchResult, Void, BusinessSearchResult> {
 
 		protected BusinessSearchResult doInBackground(BusinessSearchResult... params) {
-			return BusinessSearchServiceFactory.getInstance().getMoreResults(params[0]);
+			try {
+				return BusinessSearchServiceFactory.getInstance().getMoreResults(params[0]);
+			} catch(ConnectionException e) {
+				return null;
+			}
 		}
 		
 		protected void onPostExecute(BusinessSearchResult result) {
+			if (result == null) {
+				ErrorHandler handler = ErrorHandlerFactory.forContext(getBaseContext());
+				handler.error(R.string.check_internet_connection);
+				pd.dismiss();
+				return;
+			}
+
 			searchResult = result;
 			BusinessAdapter adapter = (BusinessAdapter) resultList.getAdapter();
 			adapter.addBusinesses(result.getPageResults());

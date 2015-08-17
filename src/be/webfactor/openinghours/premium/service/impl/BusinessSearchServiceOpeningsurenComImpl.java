@@ -1,5 +1,16 @@
 package be.webfactor.openinghours.premium.service.impl;
 
+import be.webfactor.openinghours.premium.domain.Business;
+import be.webfactor.openinghours.premium.domain.BusinessSearchQuery;
+import be.webfactor.openinghours.premium.domain.BusinessSearchResult;
+import be.webfactor.openinghours.premium.domain.DailyOpeningTime;
+import be.webfactor.openinghours.premium.service.BusinessSearchService;
+import be.webfactor.openinghours.premium.service.ConnectionException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -8,18 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import be.webfactor.openinghours.premium.domain.Business;
-import be.webfactor.openinghours.premium.domain.BusinessSearchQuery;
-import be.webfactor.openinghours.premium.domain.BusinessSearchResult;
-import be.webfactor.openinghours.premium.domain.DailyOpeningTime;
-import be.webfactor.openinghours.premium.service.BusinessSearchService;
-import be.webfactor.openinghours.premium.service.ConnectionException;
 
 public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchService {
 
@@ -188,6 +187,9 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 
 	private int getResultCount(Element context) {
 		Element resultCountElement = context.select("td[colspan=2] b").first();
+		if (resultCountElement == null) {
+			throw new ConnectionException();
+		}
 		String count = resultCountElement.text().replaceFirst(".*?(\\d+).*", "$1");
 		return Integer.parseInt(count);
 	}
