@@ -19,28 +19,6 @@ public class DetailActivity extends Activity {
 
 	private Business business;
 
-	private TextView name;
-	private TextView category;
-	private TextView street;
-	private TextView city;
-	private TextView mondayAm;
-	private TextView mondayPm;
-	private TextView tuesdayAm;
-	private TextView tuesdayPm;
-	private TextView wednesdayAm;
-	private TextView wednesdayPm;
-	private TextView thursdayAm;
-	private TextView thursdayPm;
-	private TextView fridayAm;
-	private TextView fridayPm;
-	private TextView saturdayAm;
-	private TextView saturdayPm;
-	private TextView sundayAm;
-	private TextView sundayPm;
-	private TextView holidayAm;
-	private TextView holidayPm;
-	private TextView lastUpdated;
-
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -102,27 +80,27 @@ public class DetailActivity extends Activity {
 	private void buildLayout() {
 		setContentView(R.layout.activity_detail);
 
-		name = (TextView) findViewById(R.id.name);
-		category = (TextView) findViewById(R.id.category);
-		street = (TextView) findViewById(R.id.street);
-		city = (TextView) findViewById(R.id.city);
-		mondayAm = (TextView) findViewById(R.id.monday_am);
-		mondayPm = (TextView) findViewById(R.id.monday_pm);
-		tuesdayAm = (TextView) findViewById(R.id.tuesday_am);
-		tuesdayPm = (TextView) findViewById(R.id.tuesday_pm);
-		wednesdayAm = (TextView) findViewById(R.id.wednesday_am);
-		wednesdayPm = (TextView) findViewById(R.id.wednesday_pm);
-		thursdayAm = (TextView) findViewById(R.id.thursday_am);
-		thursdayPm = (TextView) findViewById(R.id.thursday_pm);
-		fridayAm = (TextView) findViewById(R.id.friday_am);
-		fridayPm = (TextView) findViewById(R.id.friday_pm);
-		saturdayAm = (TextView) findViewById(R.id.saturday_am);
-		saturdayPm = (TextView) findViewById(R.id.saturday_pm);
-		sundayAm = (TextView) findViewById(R.id.sunday_am);
-		sundayPm = (TextView) findViewById(R.id.sunday_pm);
-		holidayAm = (TextView) findViewById(R.id.holiday_am);
-		holidayPm = (TextView) findViewById(R.id.holiday_pm);
-		lastUpdated = (TextView) findViewById(R.id.last_updated);
+		TextView name = (TextView) findViewById(R.id.name);
+		TextView category = (TextView) findViewById(R.id.category);
+		TextView street = (TextView) findViewById(R.id.street);
+		TextView city = (TextView) findViewById(R.id.city);
+		TextView mondayAm = (TextView) findViewById(R.id.monday_am);
+		TextView mondayPm = (TextView) findViewById(R.id.monday_pm);
+		TextView tuesdayAm = (TextView) findViewById(R.id.tuesday_am);
+		TextView tuesdayPm = (TextView) findViewById(R.id.tuesday_pm);
+		TextView wednesdayAm = (TextView) findViewById(R.id.wednesday_am);
+		TextView wednesdayPm = (TextView) findViewById(R.id.wednesday_pm);
+		TextView thursdayAm = (TextView) findViewById(R.id.thursday_am);
+		TextView thursdayPm = (TextView) findViewById(R.id.thursday_pm);
+		TextView fridayAm = (TextView) findViewById(R.id.friday_am);
+		TextView fridayPm = (TextView) findViewById(R.id.friday_pm);
+		TextView saturdayAm = (TextView) findViewById(R.id.saturday_am);
+		TextView saturdayPm = (TextView) findViewById(R.id.saturday_pm);
+		TextView sundayAm = (TextView) findViewById(R.id.sunday_am);
+		TextView sundayPm = (TextView) findViewById(R.id.sunday_pm);
+		TextView holidayAm = (TextView) findViewById(R.id.holiday_am);
+		TextView holidayPm = (TextView) findViewById(R.id.holiday_pm);
+		TextView lastUpdated = (TextView) findViewById(R.id.last_updated);
 
 		name.setText(business.getName());
 		category.setText(business.getCategory());
