@@ -18,11 +18,11 @@
 		<item name="android:backgroundSplit">@drawable/ab_bottom_solid_openingsuren</item>
 		<item name="android:progressBarStyle">@style/ProgressBar.Openingsuren</item>
 		<item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>
+		<item name="android:height">55dp</item>
 	</style>
 
 	<style name="MyTheme.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-		<item name="android:textColor">@color/verydark</item>
-		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/white</item>
 	</style>
 
 	<style name="ActionBar.Transparent.Openingsuren" parent="@android:style/Widget.Holo.Light.ActionBar">
