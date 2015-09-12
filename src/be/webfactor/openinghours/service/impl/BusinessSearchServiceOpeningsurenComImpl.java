@@ -29,11 +29,15 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 	private TranslatedLabelInfo labels;
 
 	public BusinessSearchServiceOpeningsurenComImpl() {
-		if (Locale.getDefault().getLanguage().equals("fr")) {
+		if (isFrenchVersion()) {
 			labels = new FrenchTranslatedLabelInfo();
 		} else {
 			labels = new DutchTranslatedLabelInfo();
 		}
+	}
+
+	private boolean isFrenchVersion() {
+		return Locale.getDefault().getLanguage().equals("fr");
 	}
 
 	public BusinessSearchResult findBusinesses(BusinessSearchQuery query) {
@@ -62,7 +66,7 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 
 		List<Business> firstTenResults = result.getPageResults();
 		Elements rows = resultsPage.select("table[bordercolordark=#000266]").first().select("tr");
-		for (int i = startIndex; i < rows.size() - 5; i++) {
+		for (int i = startIndex; i < rows.size() - getOffset(); i++) {
 			Business business = new Business();
 			Elements columns = rows.get(i).select("td");
 			business.setOpen(!columns.get(0).attr("bgcolor").equals("red"));
@@ -86,6 +90,10 @@ public class BusinessSearchServiceOpeningsurenComImpl implements BusinessSearchS
 		}
 
 		return result;
+	}
+
+	private int getOffset() {
+		return isFrenchVersion() ? 4 : 5;
 	}
 
 	public Business getDetail(Business business) {
